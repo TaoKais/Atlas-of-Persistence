@@ -46,6 +46,28 @@ python -m unittest discover -s tests -v
 
 The first command regenerates the CSV files and summary in `output/`.
 
+## Exploratory Predictive Validation
+
+The current phase includes an ablation table in `output/model_validation.csv`.
+It compares ridge models using leave-one-out validation over unstable
+identities. The target variable is `log10(tau)`.
+
+Predictors are introduced progressively:
+
+1. Intercept.
+2. Mass.
+3. Mass and annotated representative decay-mode count.
+4. Mass, modes, and family.
+5. Mass, modes, family, and dominant interaction.
+
+`N_C = f_C tau` is excluded from prediction because it contains the lifetime
+itself. Its correlation with `tau` is descriptive and circular.
+
+In the current sample, the annotated mode count does not improve the mass
+model. Dominant interaction does reduce out-of-sample error, but it may encode
+information close to the decay mechanism. This is a lead for a larger study,
+not evidence of a new persistence law.
+
 ## Structure
 
 ```text
@@ -57,7 +79,7 @@ output/     regenerable reports
 
 ## Data and Sources
 
-The particle values are a pedagogical selection of central values published by
+The particle values are an exploratory selection of central values published by
 the Particle Data Group (PDG). Constants are based on CODATA 2022/NIST. Each CSV
 includes a `source` column.
 
@@ -67,6 +89,11 @@ includes a `source` column.
 
 The exergy scenarios and some compact objects are reference examples for
 validating formulas, not fitted observations.
+
+`representative_decay_mode_count` is a curated annotation of representative
+modes. It is not intended to count all exclusive channels or replace a
+phase-space integral. `dominant_interaction` is a broad physical classification
+and must also be treated as an exploratory variable.
 
 ## Falsifiable Questions
 
@@ -80,4 +107,5 @@ validating formulas, not fitted observations.
    concrete thermodynamic processes better than isolated energy efficiency.
 4. Treat `Phi` as a regime coordinate and test where a Newtonian approximation
    exceeds a predefined error tolerance.
-
+5. Replace the mode proxy with uniformly defined observables: partial widths,
+   branching fractions, phase space, and selection rules.

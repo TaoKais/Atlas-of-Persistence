@@ -26,7 +26,8 @@ class Particle:
     mass_mev: float
     lifetime_s: float | None
     stability: str
-    decay_channel_count: int
+    representative_decay_mode_count: int
+    dominant_interaction: str
     source: str
 
     @property
@@ -77,7 +78,8 @@ def load_particles() -> list[Particle]:
                 mass_mev=float(row["mass_mev"]),
                 lifetime_s=float(row["lifetime_s"]) if row["lifetime_s"] else None,
                 stability=row["stability"],
-                decay_channel_count=int(row["decay_channel_count"]),
+                representative_decay_mode_count=int(row["representative_decay_mode_count"]),
+                dominant_interaction=row["dominant_interaction"],
                 source=row["source"],
             )
         )
@@ -150,6 +152,149 @@ def spearman(values_a: list[float], values_b: list[float]) -> float:
     return numerator / denominator if denominator else math.nan
 
 
+def solve_linear_system(matrix: list[list[float]], vector: list[float]) -> list[float]:
+    augmented = [row[:] + [value] for row, value in zip(matrix, vector)]
+    for column in range(len(vector)):
+        pivot = max(range(column, len(vector)), key=lambda row: abs(augmented[row][column]))
+        augmented[column], augmented[pivot] = augmented[pivot], augmented[column]
+        divisor = augmented[column][column]
+        if abs(divisor) < 1e-12:
+            raise ValueError("Singular linear system")
+        augmented[column] = [value / divisor for value in augmented[column]]
+        for row in range(len(vector)):
+            if row == column:
+                continue
+            factor = augmented[row][column]
+            augmented[row] = [
+                value - factor * pivot_value
+                for value, pivot_value in zip(augmented[row], augmented[column])
+            ]
+    return [row[-1] for row in augmented]
+
+
+def ridge_predict(
+    training_features: list[list[float]],
+    training_targets: list[float],
+    test_features: list[float],
+    alpha: float = 1.0,
+) -> float:
+    if not training_features[0]:
+        return sum(training_targets) / len(training_targets)
+    feature_count = len(training_features[0])
+    means = [
+        sum(row[column] for row in training_features) / len(training_features)
+        for column in range(feature_count)
+    ]
+    scales = []
+    for column, mean in enumerate(means):
+        variance = sum((row[column] - mean) ** 2 for row in training_features) / len(
+            training_features
+        )
+        scales.append(math.sqrt(variance) or 1.0)
+    standardized = [
+        [1.0] + [(value - means[index]) / scales[index] for index, value in enumerate(row)]
+        for row in training_features
+    ]
+    test = [1.0] + [
+        (value - means[index]) / scales[index] for index, value in enumerate(test_features)
+    ]
+    dimension = feature_count + 1
+    gram = [
+        [
+            sum(row[left] * row[right] for row in standardized)
+            + (alpha if left == right and left != 0 else 0.0)
+            for right in range(dimension)
+        ]
+        for left in range(dimension)
+    ]
+    projected = [
+        sum(row[column] * target for row, target in zip(standardized, training_targets))
+        for column in range(dimension)
+    ]
+    coefficients = solve_linear_system(gram, projected)
+    return sum(value * coefficient for value, coefficient in zip(test, coefficients))
+
+
+def particle_feature_vector(particle: Particle, feature_names: list[str]) -> list[float]:
+    values = []
+    for feature in feature_names:
+        if feature == "log10_mass_mev":
+            values.append(math.log10(particle.mass_mev))
+        elif feature == "log1p_representative_decay_mode_count":
+            values.append(math.log1p(particle.representative_decay_mode_count))
+        elif feature.startswith("family="):
+            values.append(float(particle.family == feature.split("=", 1)[1]))
+        elif feature.startswith("interaction="):
+            values.append(float(particle.dominant_interaction == feature.split("=", 1)[1]))
+        else:
+            raise ValueError(f"Unknown feature: {feature}")
+    return values
+
+
+def leave_one_out_metrics(
+    particles: list[Particle], feature_names: list[str], alpha: float = 1.0
+) -> tuple[float, float]:
+    unstable = [particle for particle in particles if particle.lifetime_s is not None]
+    targets = [math.log10(particle.lifetime_s or 0.0) for particle in unstable]
+    predictions = []
+    for test_index, particle in enumerate(unstable):
+        training_particles = [
+            candidate for index, candidate in enumerate(unstable) if index != test_index
+        ]
+        training_targets = [target for index, target in enumerate(targets) if index != test_index]
+        training_features = [
+            particle_feature_vector(candidate, feature_names) for candidate in training_particles
+        ]
+        predictions.append(
+            ridge_predict(
+                training_features,
+                training_targets,
+                particle_feature_vector(particle, feature_names),
+                alpha,
+            )
+        )
+    errors = [prediction - target for prediction, target in zip(predictions, targets)]
+    mae = sum(abs(error) for error in errors) / len(errors)
+    rmse = math.sqrt(sum(error**2 for error in errors) / len(errors))
+    return mae, rmse
+
+
+def model_validation_rows(particles: list[Particle]) -> list[dict[str, object]]:
+    family_features = [f"family={family}" for family in ("baryon", "boson", "lepton", "meson", "quark")]
+    interaction_features = [
+        f"interaction={interaction}" for interaction in ("electromagnetic", "mixed", "strong", "weak")
+    ]
+    models = {
+        "intercept_only": [],
+        "mass_only": ["log10_mass_mev"],
+        "mass_plus_modes": ["log10_mass_mev", "log1p_representative_decay_mode_count"],
+        "mass_modes_family": [
+            "log10_mass_mev",
+            "log1p_representative_decay_mode_count",
+            *family_features,
+        ],
+        "mass_modes_family_interaction": [
+            "log10_mass_mev",
+            "log1p_representative_decay_mode_count",
+            *family_features,
+            *interaction_features,
+        ],
+    }
+    return [
+        {
+            "model": model,
+            "validation": "leave_one_out_ridge",
+            "sample_size": sum(particle.lifetime_s is not None for particle in particles),
+            "feature_count": len(features),
+            "features": "|".join(features) if features else "intercept",
+            "mae_log10_lifetime_s": leave_one_out_metrics(particles, features)[0],
+            "rmse_log10_lifetime_s": leave_one_out_metrics(particles, features)[1],
+            "interpretation": "exploratory_only; compare errors, not causal explanations",
+        }
+        for model, features in models.items()
+    ]
+
+
 def hypothesis_metric_rows(particles: list[Particle]) -> list[dict[str, object]]:
     unstable = [particle for particle in particles if particle.lifetime_s is not None]
     log_lifetime = [math.log10(particle.lifetime_s or 0.0) for particle in unstable]
@@ -158,7 +303,9 @@ def hypothesis_metric_rows(particles: list[Particle]) -> list[dict[str, object]]
         "log10_compton_frequency_hz": [
             math.log10(particle.compton_frequency_hz) for particle in unstable
         ],
-        "decay_channel_count": [float(particle.decay_channel_count) for particle in unstable],
+        "representative_decay_mode_count": [
+            float(particle.representative_decay_mode_count) for particle in unstable
+        ],
         "log10_compton_cycles": [
             math.log10(particle.compton_cycles or 0.0) for particle in unstable
         ],
@@ -170,7 +317,9 @@ def hypothesis_metric_rows(particles: list[Particle]) -> list[dict[str, object]]
             "sample_size": len(unstable),
             "spearman_rank_correlation": spearman(values, log_lifetime),
             "interpretation": (
-                "descriptive_only; requires a larger catalogue and controlled validation"
+                "target_derived; never use as predictor"
+                if name == "log10_compton_cycles"
+                else "descriptive_only; see out-of-sample model validation"
             ),
         }
         for name, values in candidates.items()
@@ -195,7 +344,8 @@ def particle_rows(particles: list[Particle]) -> list[dict[str, object]]:
             "compton_frequency_hz": particle.compton_frequency_hz,
             "lifetime_s": particle.lifetime_s if particle.lifetime_s is not None else "",
             "stability": particle.stability,
-            "decay_channel_count": particle.decay_channel_count,
+            "representative_decay_mode_count": particle.representative_decay_mode_count,
+            "dominant_interaction": particle.dominant_interaction,
             "compton_cycles": particle.compton_cycles if particle.compton_cycles is not None else "",
             "quality_factor": particle.quality_factor if particle.quality_factor is not None else "",
             "relative_width": particle.relative_width if particle.relative_width is not None else "",
@@ -234,12 +384,18 @@ def summary_markdown(
     particles: list[Particle],
     gaps: list[dict[str, float | str]],
     objects: list[dict[str, object]],
+    validation: list[dict[str, object]],
 ) -> str:
     unstable = [particle for particle in particles if particle.lifetime_s is not None]
     shortest = min(unstable, key=lambda particle: particle.lifetime_s or math.inf)
     longest = max(unstable, key=lambda particle: particle.lifetime_s or -math.inf)
     largest_gap = gaps[0]
     horizon = next(row for row in objects if row["name"] == "schwarzschild_horizon_reference")
+    baseline = next(row for row in validation if row["model"] == "mass_only")
+    modes = next(row for row in validation if row["model"] == "mass_plus_modes")
+    interaction = next(
+        row for row in validation if row["model"] == "mass_modes_family_interaction"
+    )
     return f"""# Generated exploratory summary
 
 ## Dataset
@@ -259,11 +415,26 @@ def summary_markdown(
 - Schwarzschild horizon reference: `Phi = {float(horizon["phi"]):.6g}`;
   equivalently `2 Phi = {float(horizon["two_phi"]):.6g}`.
 
+## Out-of-sample lifetime validation
+
+- Validation: leave-one-out ridge regression over unstable identities only.
+- Mass-only MAE: `{float(baseline["mae_log10_lifetime_s"]):.4g}` log10 seconds.
+- Mass plus representative modes MAE:
+  `{float(modes["mae_log10_lifetime_s"]):.4g}` log10 seconds.
+- Mass, modes, family, and dominant interaction MAE:
+  `{float(interaction["mae_log10_lifetime_s"]):.4g}` log10 seconds.
+- In this sample, the curated mode-count proxy does not improve on mass alone.
+- Dominant interaction improves prediction, but it may encode information close
+  to the decay mechanism and is not evidence of a new persistence law.
+
 ## Interpretation limits
 
 - Gaps depend on catalogue selection and observational bias.
 - Stable particles need lower bounds, not invented finite lifetimes.
-- `decay_channel_count` is an exploratory annotation, not a phase-space volume.
+- `representative_decay_mode_count` is a curated exploratory annotation, not a
+  complete channel count or phase-space volume.
+- `N_C = f_C tau` contains the target lifetime. It is descriptive and must not
+  be used as a lifetime predictor.
 - The exergy scenarios are formula demonstrations, not fitted experiments.
 """
 
@@ -273,13 +444,15 @@ def generate() -> None:
     particles = load_particles()
     gaps = logarithmic_gaps(particles)
     objects = compact_object_rows()
+    validation = model_validation_rows(particles)
     write_csv(OUTPUT / "particles_analysis.csv", particle_rows(particles))
     write_csv(OUTPUT / "frequency_gaps.csv", gaps)
     write_csv(OUTPUT / "hypothesis_metrics.csv", hypothesis_metric_rows(particles))
+    write_csv(OUTPUT / "model_validation.csv", validation)
     write_csv(OUTPUT / "compactness_analysis.csv", objects)
     write_csv(OUTPUT / "exergy_analysis.csv", exergy_rows())
     (OUTPUT / "summary.md").write_text(
-        summary_markdown(particles, gaps, objects), encoding="utf-8"
+        summary_markdown(particles, gaps, objects, validation), encoding="utf-8"
     )
 
 

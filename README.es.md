@@ -46,6 +46,28 @@ python -m unittest discover -s tests -v
 
 El primer comando regenera los CSV y el resumen en `output/`.
 
+## Validacion predictiva exploratoria
+
+La fase actual incluye una tabla de ablacion en `output/model_validation.csv`.
+Compara modelos ridge mediante validacion leave-one-out sobre las identidades
+inestables. La variable objetivo es `log10(tau)`.
+
+Los predictores se incorporan progresivamente:
+
+1. Intercepto.
+2. Masa.
+3. Masa y numero de modos de decaimiento representativos anotados.
+4. Masa, modos y familia.
+5. Masa, modos, familia e interaccion dominante.
+
+`N_C = f_C tau` queda excluido de la prediccion porque contiene la propia vida
+media. Su correlacion con `tau` es descriptiva y circular.
+
+En la muestra actual, el numero de modos anotados no mejora el modelo de masa.
+La interaccion dominante si reduce el error fuera de muestra, pero puede
+codificar informacion cercana al mecanismo de decaimiento. Es una pista para
+ampliar el estudio, no evidencia de una nueva ley de persistencia.
+
 ## Estructura
 
 ```text
@@ -57,7 +79,7 @@ output/     informes regenerables
 
 ## Datos y fuentes
 
-Los valores de particulas son una seleccion pedagogica de valores centrales
+Los valores de particulas son una seleccion exploratoria de valores centrales
 publicados por Particle Data Group (PDG). Las constantes se basan en CODATA
 2022/NIST. Cada CSV incluye una columna `source`.
 
@@ -67,6 +89,11 @@ publicados por Particle Data Group (PDG). Las constantes se basan en CODATA
 
 Los escenarios de exergia y algunos objetos compactos son ejemplos de referencia
 para validar formulas, no observaciones ajustadas.
+
+`representative_decay_mode_count` es una anotacion curada de modos
+representativos. No pretende contar todos los canales exclusivos ni sustituir
+una integral de espacio de fases. `dominant_interaction` es una clasificacion
+fisica amplia y tambien debe tratarse como variable exploratoria.
 
 ## Preguntas falsables
 
@@ -80,4 +107,6 @@ para validar formulas, no observaciones ajustadas.
    procesos termodinamicos concretos mejor que eficiencia energetica aislada.
 4. Tratar `Phi` como coordenada de regimen y contrastar donde una aproximacion
    newtoniana deja de cumplir una tolerancia prefijada.
-
+5. Sustituir el proxy de modos por observables definidos de forma uniforme:
+   anchuras parciales, branching fractions, espacio de fases y reglas de
+   seleccion.

@@ -1,0 +1,6 @@
+model,validation,sample_size,feature_count,features,mae_log10_lifetime_s,rmse_log10_lifetime_s,interpretation
+intercept_only,leave_one_out_ridge,29,0,intercept,6.179113140853582,7.121308759478652,"exploratory_only; compare errors, not causal explanations"
+mass_only,leave_one_out_ridge,29,1,log10_mass_mev,4.883798096570538,6.012021373676451,"exploratory_only; compare errors, not causal explanations"
+mass_plus_modes,leave_one_out_ridge,29,2,log10_mass_mev|log1p_representative_decay_mode_count,4.994519704518873,6.31642623673466,"exploratory_only; compare errors, not causal explanations"
+mass_modes_family,leave_one_out_ridge,29,7,log10_mass_mev|log1p_representative_decay_mode_count|family=baryon|family=boson|family=lepton|family=meson|family=quark,4.740565880317316,6.170396682593194,"exploratory_only; compare errors, not causal explanations"
+mass_modes_family_interaction,leave_one_out_ridge,29,11,log10_mass_mev|log1p_representative_decay_mode_count|family=baryon|family=boson|family=lepton|family=meson|family=quark|interaction=electromagnetic|interaction=mixed|interaction=strong|interaction=weak,2.878021002022117,4.026663689144031,"exploratory_only; compare errors, not causal explanations"
