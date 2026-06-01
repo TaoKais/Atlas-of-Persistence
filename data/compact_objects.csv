@@ -1,0 +1,6 @@
+name,mass_kg,radius_m,kind,source
+Earth,5.9722e24,6.371e6,planet,https://nssdc.gsfc.nasa.gov/planetary/factsheet/sunfact.html
+Sun,1.9884e30,6.957e8,main_sequence_star,https://nssdc.gsfc.nasa.gov/planetary/factsheet/sunfact.html
+white_dwarf_reference,1.9885e30,7.0e6,white_dwarf,illustrative_reference
+neutron_star_reference,2.7839e30,1.2e4,neutron_star,illustrative_reference
+schwarzschild_horizon_reference,1.9885e30,2.953383939028493e3,black_hole_horizon,formula_reference

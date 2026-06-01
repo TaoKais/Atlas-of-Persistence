@@ -1,0 +1,6 @@
+name,mass_kg,radius_m,kind,source,phi,two_phi
+Earth,5.9722e24,6.371e6,planet,https://nssdc.gsfc.nasa.gov/planetary/factsheet/sunfact.html,6.961311310505493e-10,1.3922622621010986e-09
+Sun,1.9884e30,6.957e8,main_sequence_star,https://nssdc.gsfc.nasa.gov/planetary/factsheet/sunfact.html,2.122492033795538e-06,4.244984067591076e-06
+white_dwarf_reference,1.9885e30,7.0e6,white_dwarf,illustrative_reference,0.00021095599564489238,0.00042191199128978476
+neutron_star_reference,2.7839e30,1.2e4,neutron_star,illustrative_reference,0.17228072977666206,0.3445614595533241
+schwarzschild_horizon_reference,1.9885e30,2.953383939028493e3,black_hole_horizon,formula_reference,0.5,1.0

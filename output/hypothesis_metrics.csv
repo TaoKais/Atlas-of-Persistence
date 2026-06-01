@@ -1,0 +1,5 @@
+candidate,target,sample_size,spearman_rank_correlation,interpretation
+log10_mass_mev,log10_lifetime_s,15,-0.7417339869769682,descriptive_only; requires a larger catalogue and controlled validation
+log10_compton_frequency_hz,log10_lifetime_s,15,-0.7417339869769682,descriptive_only; requires a larger catalogue and controlled validation
+decay_channel_count,log10_lifetime_s,15,-0.3032276080459769,descriptive_only; requires a larger catalogue and controlled validation
+log10_compton_cycles,log10_lifetime_s,15,0.9964285714285714,descriptive_only; requires a larger catalogue and controlled validation

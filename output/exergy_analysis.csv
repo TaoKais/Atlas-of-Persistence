@@ -1,0 +1,4 @@
+name,input_exergy_j,entropy_generated_j_per_k,ambient_temperature_k,source,destroyed_exergy_j,delta_x
+ideal_reversible_reference,1000,0,298.15,illustrative_reference,0.0,0.0
+low_irreversibility_reference,1000,0.25,298.15,illustrative_reference,74.5375,0.07453749999999999
+high_irreversibility_reference,1000,2.5,298.15,illustrative_reference,745.375,0.745375
