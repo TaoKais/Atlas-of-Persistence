@@ -19,6 +19,7 @@ BASE = "2"
 TOP_K = 5
 PAIR_OUTPUT = DATA / "gap_pair_structure.csv"
 SUMMARY_OUTPUT = DATA / "gap_pair_structure_summary.csv"
+FREQUENCY_OUTPUT = DATA / "gap_pair_frequency_structure.csv"
 ENTITY_METRICS = [
     "mass_mev",
     "compton_frequency_hz",
@@ -41,6 +42,18 @@ SUMMARY_COLUMNS = [
     "multiplicative_spread",
     "log10_ratio_std",
     "shared_scale",
+]
+FREQUENCY_COLUMNS = [
+    "from_entity",
+    "to_entity",
+    "from_compton_frequency_hz",
+    "to_compton_frequency_hz",
+    "absolute_frequency_difference_hz",
+    "folded_frequency_ratio",
+    "frequency_octave_separation",
+    "nearest_integer_octaves",
+    "octave_residual",
+    "geometric_mean_frequency_hz",
 ]
 
 
@@ -129,21 +142,52 @@ def ratio_summary_table(pairs: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows, columns=SUMMARY_COLUMNS)
 
 
-def generate() -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Write the detailed five-pair comparison and ratio summary CSV files."""
+def frequency_structure_table(pairs: pd.DataFrame) -> pd.DataFrame:
+    """Describe pair separation specifically in Compton-frequency terms."""
+
+    rows: list[dict[str, object]] = []
+    for _, pair in pairs.iterrows():
+        left = float(pair["from_compton_frequency_hz"])
+        right = float(pair["to_compton_frequency_hz"])
+        folded_ratio = max(left / right, right / left)
+        octave_separation = math.log2(folded_ratio)
+        nearest_octaves = round(octave_separation)
+        rows.append(
+            {
+                "from_entity": pair["from_entity"],
+                "to_entity": pair["to_entity"],
+                "from_compton_frequency_hz": left,
+                "to_compton_frequency_hz": right,
+                "absolute_frequency_difference_hz": abs(right - left),
+                "folded_frequency_ratio": folded_ratio,
+                "frequency_octave_separation": octave_separation,
+                "nearest_integer_octaves": nearest_octaves,
+                "octave_residual": abs(octave_separation - nearest_octaves),
+                "geometric_mean_frequency_hz": _geometric_mean(left, right),
+            }
+        )
+    return pd.DataFrame(rows, columns=FREQUENCY_COLUMNS)
+
+
+def generate() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Write detailed pair, ratio-summary, and frequency-specific CSV files."""
 
     gaps, phases = load_inputs()
     pairs = pair_structure_table(gaps, phases)
     summary = ratio_summary_table(pairs)
+    frequency = frequency_structure_table(pairs)
     DATA.mkdir(parents=True, exist_ok=True)
     pairs.to_csv(PAIR_OUTPUT, index=False)
     summary.to_csv(SUMMARY_OUTPUT, index=False)
-    return pairs, summary
+    frequency.to_csv(FREQUENCY_OUTPUT, index=False)
+    return pairs, summary, frequency
 
 
 if __name__ == "__main__":
-    generated_pairs, generated_summary = generate()
+    generated_pairs, generated_summary, generated_frequency = generate()
     print("Selected base-2 top-5 gap pairs:")
     print(generated_pairs[["from_entity", "to_entity", "gap_deg"]].to_string(index=False))
     print("\nRatio-scale comparison:")
     print(generated_summary.to_string(index=False))
+    print("\nCompton-frequency comparison:")
+    print(generated_frequency.to_string(index=False))

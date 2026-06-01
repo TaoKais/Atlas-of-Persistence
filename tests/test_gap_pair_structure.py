@@ -6,6 +6,7 @@ from src.gap_geometry import load_inputs
 from src.gap_pair_structure import (
     RATIO_METRICS,
     pair_structure_table,
+    frequency_structure_table,
     ratio_summary_table,
     selected_gap_pairs,
 )
@@ -18,6 +19,7 @@ class GapPairStructureTests(unittest.TestCase):
         cls.selected = selected_gap_pairs(cls.gaps)
         cls.pairs = pair_structure_table(cls.gaps, cls.phases)
         cls.summary = ratio_summary_table(cls.pairs)
+        cls.frequency = frequency_structure_table(cls.pairs)
 
     def test_exactly_five_gap_pairs_are_selected(self) -> None:
         self.assertEqual(len(self.selected), 5)
@@ -48,6 +50,18 @@ class GapPairStructureTests(unittest.TestCase):
         numeric = self.summary.drop(columns="metric").drop(columns="shared_scale")
         self.assertTrue(np.isfinite(numeric.to_numpy(dtype=float)).all())
         self.assertTrue(self.summary["multiplicative_spread"].ge(1.0).all())
+
+    def test_frequency_octave_separation_matches_frequency_ratio(self) -> None:
+        np.testing.assert_allclose(
+            self.frequency["frequency_octave_separation"],
+            np.log2(self.frequency["folded_frequency_ratio"]),
+        )
+        self.assertTrue(self.frequency["octave_residual"].between(0.0, 0.5).all())
+
+    def test_compton_frequency_ratio_matches_mass_ratio(self) -> None:
+        np.testing.assert_allclose(
+            self.pairs["ratio_compton_frequency_hz"], self.pairs["ratio_mass_mev"]
+        )
 
 
 if __name__ == "__main__":

@@ -44,6 +44,40 @@ Mass and Compton-frequency ratios match because Compton frequency is directly
 proportional to mass. None of the four positive-valued metrics passes the
 shared-scale screening rule.
 
+## Frequency-Specific Check
+
+Compton frequency is:
+
+```text
+f_C = m c^2 / h
+```
+
+It expresses the rest-energy scale as a frequency. It is not independent of
+mass, so the Compton-frequency ratios exactly reproduce the mass ratios.
+
+The frequency-specific output also measures each pair separation in octaves:
+
+```text
+octave_separation = log2(max(f_1 / f_2, f_2 / f_1))
+```
+
+| pair | folded frequency ratio | octave separation | nearest integer octaves | residual |
+| --- | ---: | ---: | ---: | ---: |
+| eta -> Higgs | 228.5247 | 7.836206 | 8 | 0.163794 |
+| K_long -> Z | 183.2516 | 7.517682 | 8 | 0.482318 |
+| pi_plus -> rho_770 | 5.554617 | 2.473687 | 2 | 0.473687 |
+| B_plus -> Lambda | 4.731998 | 2.242450 | 2 | 0.242450 |
+| K_short -> neutron | 1.888152 | 0.916975 | 1 | 0.083025 |
+
+There is a coarse descriptive grouping near `8`, `2`, and `1` octaves, but
+there is no single repeated interval. Two residuals are close to half an
+octave, so this does not support a repeated octave-harmonic relationship.
+
+The shared frequency property is therefore limited and expected: all five
+pairs can be expressed through rest-energy Compton frequencies, and those
+frequencies inherit the same ratios as mass. The current data do not show an
+additional common frequency law linking the five gaps.
+
 ## Interpretation
 
 The five circular phase gaps do not correspond to one repeated physical
@@ -66,3 +100,5 @@ python -m unittest discover -s tests -v
 
 Detailed pair metrics are written to `data/gap_pair_structure.csv`. The
 cross-pair scale summary is written to `data/gap_pair_structure_summary.csv`.
+The frequency-specific comparison is written to
+`data/gap_pair_frequency_structure.csv`.

@@ -119,6 +119,7 @@ Generated numerical results / Resultados numericos generados:
 - [Gap-center notes / Notas de centros de huecos](docs/gap_geometry_analysis.md)
 - [Gap-pair metrics / Metricas de pares de huecos](data/gap_pair_structure.csv)
 - [Gap-pair scale summary / Resumen de escalas de pares](data/gap_pair_structure_summary.csv)
+- [Gap-pair frequency structure / Estructura frecuencial de pares](data/gap_pair_frequency_structure.csv)
 - [Gap-pair notes / Notas de pares de huecos](docs/gap_pair_structure_analysis.md)
 
 ### Unit Circle, Base 10 / Circulo Unidad, Base 10
