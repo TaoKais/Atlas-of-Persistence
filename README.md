@@ -137,3 +137,30 @@ Generated numerical results / Resultados numericos generados:
 ### Phase Fraction Heatmap / Mapa de Calor de Fraccion de Fase
 
 ![Particle phase fractions across logarithmic bases](outputs/complex_phase/phase_fraction_heatmap.png)
+
+## Gap-Center Geometry / Geometria de Centros de Huecos
+
+The gap-center geometry analysis connects the centers of the largest circular
+phase gaps in angular order. These polygons are exploratory visual summaries.
+Recognizable geometry does not imply a physical law or a preferred base.
+
+El analisis de geometria de centros de huecos conecta en orden angular los
+centros de los mayores huecos circulares de fase. Estos poligonos son resumenes
+visuales exploratorios. Una geometria reconocible no implica una ley fisica ni
+una base preferida.
+
+### Base 2, Top 5 Gap Centers / Base 2, 5 Mayores Centros de Huecos
+
+![Gap-center polygon for base 2 and top 5 gaps](outputs/gap_geometry/gap_center_polygon_base_2_top_5.png)
+
+### Symmetry Score Comparison / Comparacion de Simetria
+
+![Gap-center symmetry score by base and top K](outputs/gap_geometry/symmetry_score_by_base_and_k.png)
+
+### Polygon Area Comparison / Comparacion de Area Poligonal
+
+![Gap-center polygon area by base and top K](outputs/gap_geometry/polygon_area_by_base_and_k.png)
+
+### Best Symmetry by Base / Mejor Simetria por Base
+
+![Best gap-center symmetry score by base](outputs/gap_geometry/best_symmetry_score_radar.png)
