@@ -15,13 +15,15 @@ gravitatoria, exergia y futuros accesibles.
 
 ## Quick Start / Inicio Rapido
 
-Requires Python 3.10 or later. No third-party dependencies are installed.
+Requires Python 3.10 or later. Install the analysis dependencies first.
 
-Requiere Python 3.10 o posterior. No instala dependencias externas.
+Requiere Python 3.10 o posterior. Instale primero las dependencias de analisis.
 
 ```powershell
+python -m pip install -r requirements.txt
 python -m src.atlas_persistence
 python -m src.persistence
+python -m src.complex_phase
 python -m unittest discover -s tests -v
 ```
 
@@ -33,6 +35,9 @@ del paisaje de persistencia en `output/`.
 
 Focused framework documentation / Documentacion del marco enfocado:
 [docs/persistence_framework.md](docs/persistence_framework.md).
+
+Complex phase-gap analysis / Analisis complejo de huecos de fase:
+[docs/complex_phase_gap_analysis.md](docs/complex_phase_gap_analysis.md).
 
 ## Persistence Landscape / Paisaje de Persistencia
 
