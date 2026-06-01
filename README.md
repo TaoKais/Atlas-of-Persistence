@@ -24,20 +24,24 @@ python -m pip install -r requirements.txt
 python -m src.atlas_persistence
 python -m src.persistence
 python -m src.complex_phase
+python -m src.gap_geometry
 python -m unittest discover -s tests -v
 ```
 
-The three analysis commands regenerate the CSV reports, summaries, and plots
-in `output/` and `outputs/complex_phase/`.
+The four analysis commands regenerate the CSV reports, summaries, and plots
+in `output/`, `outputs/complex_phase/`, and `outputs/gap_geometry/`.
 
-Los tres comandos de analisis regeneran los informes CSV, resumenes y graficos
-en `output/` y `outputs/complex_phase/`.
+Los cuatro comandos de analisis regeneran los informes CSV, resumenes y graficos
+en `output/`, `outputs/complex_phase/` y `outputs/gap_geometry/`.
 
 Focused framework documentation / Documentacion del marco enfocado:
 [docs/persistence_framework.md](docs/persistence_framework.md).
 
 Complex phase-gap analysis / Analisis complejo de huecos de fase:
 [docs/complex_phase_gap_analysis.md](docs/complex_phase_gap_analysis.md).
+
+Gap-center polygon analysis / Analisis poligonal de centros de huecos:
+[docs/gap_geometry_analysis.md](docs/gap_geometry_analysis.md).
 
 ## Persistence Landscape / Paisaje de Persistencia
 
@@ -107,6 +111,8 @@ Generated numerical results / Resultados numericos generados:
 - [Circular gaps / Huecos circulares](data/complex_phase_gaps.csv)
 - [Circular metrics / Metricas circulares](data/complex_phase_summary.csv)
 - [Analysis notes / Notas del analisis](docs/complex_phase_gap_analysis.md)
+- [Gap-center geometry / Geometria de centros de huecos](data/gap_geometry_summary.csv)
+- [Gap-center notes / Notas de centros de huecos](docs/gap_geometry_analysis.md)
 
 ### Unit Circle, Base 10 / Circulo Unidad, Base 10
 
