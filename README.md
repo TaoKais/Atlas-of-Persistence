@@ -25,13 +25,14 @@ python -m src.atlas_persistence
 python -m src.persistence
 python -m src.complex_phase
 python -m src.gap_geometry
+python -m src.gap_pair_structure
 python -m unittest discover -s tests -v
 ```
 
-The four analysis commands regenerate the CSV reports, summaries, and plots
+The five analysis commands regenerate the CSV reports, summaries, and plots
 in `output/`, `outputs/complex_phase/`, and `outputs/gap_geometry/`.
 
-Los cuatro comandos de analisis regeneran los informes CSV, resumenes y graficos
+Los cinco comandos de analisis regeneran los informes CSV, resumenes y graficos
 en `output/`, `outputs/complex_phase/` y `outputs/gap_geometry/`.
 
 Focused framework documentation / Documentacion del marco enfocado:
@@ -42,6 +43,9 @@ Complex phase-gap analysis / Analisis complejo de huecos de fase:
 
 Gap-center polygon analysis / Analisis poligonal de centros de huecos:
 [docs/gap_geometry_analysis.md](docs/gap_geometry_analysis.md).
+
+Gap-pair structure analysis / Analisis estructural de pares de huecos:
+[docs/gap_pair_structure_analysis.md](docs/gap_pair_structure_analysis.md).
 
 ## Persistence Landscape / Paisaje de Persistencia
 
@@ -113,6 +117,9 @@ Generated numerical results / Resultados numericos generados:
 - [Analysis notes / Notas del analisis](docs/complex_phase_gap_analysis.md)
 - [Gap-center geometry / Geometria de centros de huecos](data/gap_geometry_summary.csv)
 - [Gap-center notes / Notas de centros de huecos](docs/gap_geometry_analysis.md)
+- [Gap-pair metrics / Metricas de pares de huecos](data/gap_pair_structure.csv)
+- [Gap-pair scale summary / Resumen de escalas de pares](data/gap_pair_structure_summary.csv)
+- [Gap-pair notes / Notas de pares de huecos](docs/gap_pair_structure_analysis.md)
 
 ### Unit Circle, Base 10 / Circulo Unidad, Base 10
 
