@@ -122,29 +122,35 @@ Generated numerical results / Resultados numericos generados:
 - [Gap-pair frequency structure / Estructura frecuencial de pares](data/gap_pair_frequency_structure.csv)
 - [Gap-pair notes / Notas de pares de huecos](docs/gap_pair_structure_analysis.md)
 
-### Unit Circle, Base 10 / Circulo Unidad, Base 10
+### Unit Circles / Circulos Unidad
 
-![Complex persistence phase on the unit circle for base 10](outputs/complex_phase/unit_circle_base_10.png)
+| base 2 | base e |
+| --- | --- |
+| <img src="outputs/complex_phase/unit_circle_base_2.png" alt="Complex persistence phase on the unit circle for base 2" width="420"> | <img src="outputs/complex_phase/unit_circle_base_e.png" alt="Complex persistence phase on the unit circle for base e" width="420"> |
 
-### Polar Landscape, Base 10 / Paisaje Polar, Base 10
+| base pi | base phi | base 10 |
+| --- | --- | --- |
+| <img src="outputs/complex_phase/unit_circle_base_pi.png" alt="Complex persistence phase on the unit circle for base pi" width="300"> | <img src="outputs/complex_phase/unit_circle_base_phi.png" alt="Complex persistence phase on the unit circle for base phi" width="300"> | <img src="outputs/complex_phase/unit_circle_base_10.png" alt="Complex persistence phase on the unit circle for base 10" width="300"> |
 
-![Normalized persistence radius versus phase for base 10](outputs/complex_phase/polar_base_10.png)
+### Polar Landscapes / Paisajes Polares
 
-### Frequency vs Phase / Frecuencia vs Fase
+| base 2 | base e |
+| --- | --- |
+| <img src="outputs/complex_phase/polar_base_2.png" alt="Normalized persistence radius versus phase for base 2" width="420"> | <img src="outputs/complex_phase/polar_base_e.png" alt="Normalized persistence radius versus phase for base e" width="420"> |
 
-![Compton frequency versus complex persistence phase](outputs/complex_phase/frequency_vs_phase.png)
+| base pi | base phi | base 10 |
+| --- | --- | --- |
+| <img src="outputs/complex_phase/polar_base_pi.png" alt="Normalized persistence radius versus phase for base pi" width="300"> | <img src="outputs/complex_phase/polar_base_phi.png" alt="Normalized persistence radius versus phase for base phi" width="300"> | <img src="outputs/complex_phase/polar_base_10.png" alt="Normalized persistence radius versus phase for base 10" width="300"> |
 
-### Persistence vs Phase / Persistencia vs Fase
+### Phase Comparisons / Comparaciones de Fase
 
-![Persistence cycles versus complex persistence phase](outputs/complex_phase/persistence_vs_phase.png)
+| Frequency vs phase / Frecuencia vs fase | Persistence vs phase / Persistencia vs fase |
+| --- | --- |
+| <img src="outputs/complex_phase/frequency_vs_phase.png" alt="Compton frequency versus complex persistence phase" width="420"> | <img src="outputs/complex_phase/persistence_vs_phase.png" alt="Persistence cycles versus complex persistence phase" width="420"> |
 
-### Largest Circular Gaps / Mayores Huecos Circulares
-
-![Largest circular gaps by logarithmic base](outputs/complex_phase/gap_ranking_top10.png)
-
-### Phase Fraction Heatmap / Mapa de Calor de Fraccion de Fase
-
-![Particle phase fractions across logarithmic bases](outputs/complex_phase/phase_fraction_heatmap.png)
+| Largest circular gaps / Mayores huecos circulares | Phase-fraction heatmap / Mapa de calor de fraccion de fase |
+| --- | --- |
+| <img src="outputs/complex_phase/gap_ranking_top10.png" alt="Largest circular gaps by logarithmic base" width="420"> | <img src="outputs/complex_phase/phase_fraction_heatmap.png" alt="Particle phase fractions across logarithmic bases" width="420"> |
 
 ## Gap-Center Geometry / Geometria de Centros de Huecos
 
@@ -157,18 +163,40 @@ centros de los mayores huecos circulares de fase. Estos poligonos son resumenes
 visuales exploratorios. Una geometria reconocible no implica una ley fisica ni
 una base preferida.
 
-### Base 2, Top 5 Gap Centers / Base 2, 5 Mayores Centros de Huecos
+### Polygon Gallery / Galeria de Poligonos
 
-![Gap-center polygon for base 2 and top 5 gaps](outputs/gap_geometry/gap_center_polygon_base_2_top_5.png)
+#### Base 2
 
-### Symmetry Score Comparison / Comparacion de Simetria
+| top 3 | top 4 | top 5 | top 6 |
+| --- | --- | --- | --- |
+| <img src="outputs/gap_geometry/gap_center_polygon_base_2_top_3.png" alt="Gap-center polygon for base 2 and top 3 gaps" width="220"> | <img src="outputs/gap_geometry/gap_center_polygon_base_2_top_4.png" alt="Gap-center polygon for base 2 and top 4 gaps" width="220"> | <img src="outputs/gap_geometry/gap_center_polygon_base_2_top_5.png" alt="Gap-center polygon for base 2 and top 5 gaps" width="220"> | <img src="outputs/gap_geometry/gap_center_polygon_base_2_top_6.png" alt="Gap-center polygon for base 2 and top 6 gaps" width="220"> |
 
-![Gap-center symmetry score by base and top K](outputs/gap_geometry/symmetry_score_by_base_and_k.png)
+#### Base e
 
-### Polygon Area Comparison / Comparacion de Area Poligonal
+| top 3 | top 4 | top 5 | top 6 |
+| --- | --- | --- | --- |
+| <img src="outputs/gap_geometry/gap_center_polygon_base_e_top_3.png" alt="Gap-center polygon for base e and top 3 gaps" width="220"> | <img src="outputs/gap_geometry/gap_center_polygon_base_e_top_4.png" alt="Gap-center polygon for base e and top 4 gaps" width="220"> | <img src="outputs/gap_geometry/gap_center_polygon_base_e_top_5.png" alt="Gap-center polygon for base e and top 5 gaps" width="220"> | <img src="outputs/gap_geometry/gap_center_polygon_base_e_top_6.png" alt="Gap-center polygon for base e and top 6 gaps" width="220"> |
 
-![Gap-center polygon area by base and top K](outputs/gap_geometry/polygon_area_by_base_and_k.png)
+#### Base pi
 
-### Best Symmetry by Base / Mejor Simetria por Base
+| top 3 | top 4 | top 5 | top 6 |
+| --- | --- | --- | --- |
+| <img src="outputs/gap_geometry/gap_center_polygon_base_pi_top_3.png" alt="Gap-center polygon for base pi and top 3 gaps" width="220"> | <img src="outputs/gap_geometry/gap_center_polygon_base_pi_top_4.png" alt="Gap-center polygon for base pi and top 4 gaps" width="220"> | <img src="outputs/gap_geometry/gap_center_polygon_base_pi_top_5.png" alt="Gap-center polygon for base pi and top 5 gaps" width="220"> | <img src="outputs/gap_geometry/gap_center_polygon_base_pi_top_6.png" alt="Gap-center polygon for base pi and top 6 gaps" width="220"> |
 
-![Best gap-center symmetry score by base](outputs/gap_geometry/best_symmetry_score_radar.png)
+#### Base phi
+
+| top 3 | top 4 | top 5 | top 6 |
+| --- | --- | --- | --- |
+| <img src="outputs/gap_geometry/gap_center_polygon_base_phi_top_3.png" alt="Gap-center polygon for base phi and top 3 gaps" width="220"> | <img src="outputs/gap_geometry/gap_center_polygon_base_phi_top_4.png" alt="Gap-center polygon for base phi and top 4 gaps" width="220"> | <img src="outputs/gap_geometry/gap_center_polygon_base_phi_top_5.png" alt="Gap-center polygon for base phi and top 5 gaps" width="220"> | <img src="outputs/gap_geometry/gap_center_polygon_base_phi_top_6.png" alt="Gap-center polygon for base phi and top 6 gaps" width="220"> |
+
+#### Base 10
+
+| top 3 | top 4 | top 5 | top 6 |
+| --- | --- | --- | --- |
+| <img src="outputs/gap_geometry/gap_center_polygon_base_10_top_3.png" alt="Gap-center polygon for base 10 and top 3 gaps" width="220"> | <img src="outputs/gap_geometry/gap_center_polygon_base_10_top_4.png" alt="Gap-center polygon for base 10 and top 4 gaps" width="220"> | <img src="outputs/gap_geometry/gap_center_polygon_base_10_top_5.png" alt="Gap-center polygon for base 10 and top 5 gaps" width="220"> | <img src="outputs/gap_geometry/gap_center_polygon_base_10_top_6.png" alt="Gap-center polygon for base 10 and top 6 gaps" width="220"> |
+
+### Geometry Comparisons / Comparaciones de Geometria
+
+| Symmetry score / Simetria | Polygon area / Area poligonal | Best symmetry / Mejor simetria |
+| --- | --- | --- |
+| <img src="outputs/gap_geometry/symmetry_score_by_base_and_k.png" alt="Gap-center symmetry score by base and top K" width="300"> | <img src="outputs/gap_geometry/polygon_area_by_base_and_k.png" alt="Gap-center polygon area by base and top K" width="300"> | <img src="outputs/gap_geometry/best_symmetry_score_radar.png" alt="Best gap-center symmetry score by base" width="300"> |
