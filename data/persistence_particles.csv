@@ -1,0 +1,9 @@
+particle,mass_mev,lifetime_s,lifetime_qualifier,lifetime_basis,source
+electron,0.51099895069,2.08289664e36,lower_bound,total lifetime lower bound: 6.6e28 years,https://doi.org/10.1103/PhysRevLett.115.231802
+muon,105.6583755,2.1969811e-6,central_value,mean lifetime,https://pdg.lbl.gov/2025/listings/contents_listings.html
+tau,1776.93,2.903e-13,central_value,mean lifetime,https://pdg.lbl.gov/2025/listings/contents_listings.html
+neutron,939.56542194,878.4,central_value,mean lifetime,https://pdg.lbl.gov/2025/listings/contents_listings.html
+proton,938.27208943,7.573824e41,lower_bound,partial lifetime lower bound for p -> e+ pi0: 2.4e34 years,https://doi.org/10.1103/PhysRevD.102.112011
+W,80369.2,3.16e-25,central_value,lifetime derived from measured width,https://pdg.lbl.gov/2025/listings/contents_listings.html
+Z,91188.0,2.64e-25,central_value,lifetime derived from measured width,https://pdg.lbl.gov/2025/listings/contents_listings.html
+Higgs,125200,1.6e-22,central_value,lifetime derived from measured width,https://pdg.lbl.gov/2025/listings/contents_listings.html

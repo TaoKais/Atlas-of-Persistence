@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="520">
+<rect width="100%" height="100%" fill="white"/>
+<text x="420.0" y="28" text-anchor="middle" font-size="18">Frequency vs lifetime</text>
+<line x1="90" y1="445" x2="810" y2="445" stroke="black"/>
+<line x1="90" y1="55" x2="90" y2="445" stroke="black"/>
+<text x="420.0" y="502" text-anchor="middle">log10(frequency / Hz)</text>
+<text x="22" y="260.0" transform="rotate(-90 22 260.0)" text-anchor="middle">log10(lifetime / s)</text>
+<text x="90.0" y="465" text-anchor="middle" font-size="11">19.77</text>
+<text x="81" y="449.0" text-anchor="end" font-size="11">-31.22</text>
+<text x="234.0" y="465" text-anchor="middle" font-size="11">20.98</text>
+<text x="81" y="371.0" text-anchor="end" font-size="11">-15.27</text>
+<text x="378.0" y="465" text-anchor="middle" font-size="11">22.18</text>
+<text x="81" y="293.0" text-anchor="end" font-size="11">0.68</text>
+<text x="522.0" y="465" text-anchor="middle" font-size="11">23.39</text>
+<text x="81" y="215.0" text-anchor="end" font-size="11">16.63</text>
+<text x="666.0" y="465" text-anchor="middle" font-size="11">24.60</text>
+<text x="81" y="137.0" text-anchor="end" font-size="11">32.58</text>
+<text x="810.0" y="465" text-anchor="middle" font-size="11">25.80</text>
+<text x="81" y="59.0" text-anchor="end" font-size="11">48.53</text>
+<circle cx="128.6" cy="114.7" r="4" fill="#2457a6"/>
+<text x="135.6" y="107.7" font-size="11">electron</text>
+<circle cx="404.8" cy="320.0" r="4" fill="#2457a6"/>
+<text x="411.8" y="313.0" font-size="11">muon</text>
+<circle cx="551.0" cy="353.6" r="4" fill="#2457a6"/>
+<text x="558.0" y="346.6" font-size="11">tau</text>
+<circle cx="518.0" cy="277.9" r="4" fill="#2457a6"/>
+<text x="525.0" y="270.9" font-size="11">neutron</text>
+<circle cx="517.9" cy="87.5" r="4" fill="#2457a6"/>
+<text x="524.9" y="80.5" font-size="11">proton</text>
+<circle cx="748.5" cy="412.1" r="4" fill="#2457a6"/>
+<text x="755.5" y="405.1" font-size="11">W</text>
+<circle cx="755.0" cy="412.5" r="4" fill="#2457a6"/>
+<text x="762.0" y="405.5" font-size="11">Z</text>
+<circle cx="771.4" cy="398.9" r="4" fill="#2457a6"/>
+<text x="778.4" y="391.9" font-size="11">Higgs</text>
+</svg>

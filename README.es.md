@@ -46,6 +46,16 @@ python -m unittest discover -s tests -v
 
 El primer comando regenera los CSV y el resumen en `output/`.
 
+El paisaje enfocado de persistencia se genera por separado:
+
+```powershell
+python -m src.persistence
+```
+
+Consulte [el marco de persistencia](docs/persistence_framework.md) para ver la
+tabla de entradas medidas, los graficos generados, el tratamiento de cotas y
+los limites de interpretacion.
+
 ## Validacion predictiva exploratoria
 
 La fase actual incluye una tabla de ablacion en `output/model_validation.csv`.

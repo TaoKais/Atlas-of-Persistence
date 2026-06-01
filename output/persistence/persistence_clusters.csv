@@ -1,0 +1,9 @@
+Particle,log10_N,Cluster,Method,Threshold
+Z,0.7649959817301074,1,adjacent gap > mean(gaps) + population_stddev(gaps),18.29086976826523
+W,0.7882310922760309,1,adjacent gap > mean(gaps) + population_stddev(gaps),18.29086976826523
+Higgs,3.685178675832777,1,adjacent gap > mean(gaps) + population_stddev(gaps),18.29086976826523
+tau,11.09597171977255,1,adjacent gap > mean(gaps) + population_stddev(gaps),18.29086976826523
+muon,16.74918461424223,1,adjacent gap > mean(gaps) + population_stddev(gaps),18.29086976826523
+neutron,26.300073716822478,1,adjacent gap > mean(gaps) + population_stddev(gaps),18.29086976826523
+electron,56.41054209203653,2,adjacent gap > mean(gaps) + population_stddev(gaps),18.29086976826523
+proton,65.23509837075635,2,adjacent gap > mean(gaps) + population_stddev(gaps),18.29086976826523

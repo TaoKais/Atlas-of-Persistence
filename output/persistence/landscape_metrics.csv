@@ -1,0 +1,4 @@
+Landscape,Log10_range,Largest_adjacent_log10_gap,Largest_gap_lower_particle,Largest_gap_upper_particle,Interpretation
+mass_mev,5.38918432054011,2.315483920780112,electron,muon,descriptive_only; electron and proton lifetime-derived values are lower bounds
+lifetime_s,66.457711281927,33.37497539229378,neutron,electron,descriptive_only; electron and proton lifetime-derived values are lower bounds
+persistence_N,64.47010238902624,30.11046837521405,neutron,electron,descriptive_only; electron and proton lifetime-derived values are lower bounds

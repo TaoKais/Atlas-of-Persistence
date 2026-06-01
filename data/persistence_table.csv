@@ -1,0 +1,9 @@
+Particle,Mass_MeV,Lifetime_s,Lifetime_qualifier,Frequency_Hz,N,log10_N,Lifetime_basis,Source
+electron,0.51099895069,2.08289664e+36,lower_bound,1.2355899654851015e+20,2.573606187526634e+56,56.41054209203653,total lifetime lower bound: 6.6e28 years,https://doi.org/10.1103/PhysRevLett.115.231802
+muon,105.6583755,2.1969811e-06,central_value,2.5548081529516867e+22,5.612865226160765e+16,16.74918461424223,mean lifetime,https://pdg.lbl.gov/2025/listings/contents_listings.html
+tau,1776.93,2.903e-13,central_value,4.2965976239379536e+23,124730229022.9188,11.09597171977255,mean lifetime,https://pdg.lbl.gov/2025/listings/contents_listings.html
+neutron,939.56542194,878.4,central_value,2.2718590824858967e+23,1.9956010180556114e+26,26.300073716822478,mean lifetime,https://pdg.lbl.gov/2025/listings/contents_listings.html
+proton,938.27208943,7.573824e+41,lower_bound,2.268731818390278e+23,1.7182975495687927e+65,65.23509837075635,partial lifetime lower bound for p -> e+ pi0: 2.4e34 years,https://doi.org/10.1103/PhysRevD.102.112011
+W,80369.2,3.16e-25,central_value,1.9433186099497117e+25,6.140886807441088,0.7882310922760309,lifetime derived from measured width,https://pdg.lbl.gov/2025/listings/contents_listings.html
+Z,91188.0,2.64e-25,central_value,2.204916030072395e+25,5.820978319391123,0.7649959817301074,lifetime derived from measured width,https://pdg.lbl.gov/2025/listings/contents_listings.html
+Higgs,125200.0,1.6e-22,central_value,3.027322531090317e+25,4843.7160497445075,3.685178675832777,lifetime derived from measured width,https://pdg.lbl.gov/2025/listings/contents_listings.html

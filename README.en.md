@@ -46,6 +46,16 @@ python -m unittest discover -s tests -v
 
 The first command regenerates the CSV files and summary in `output/`.
 
+The focused persistence landscape is generated separately:
+
+```powershell
+python -m src.persistence
+```
+
+See [the persistence framework](docs/persistence_framework.md) for the
+measured-input table, generated plots, bound semantics, and interpretation
+limits.
+
 ## Exploratory Predictive Validation
 
 The current phase includes an ablation table in `output/model_validation.csv`.
