@@ -27,11 +27,11 @@ python -m src.complex_phase
 python -m unittest discover -s tests -v
 ```
 
-The first two commands regenerate the CSV reports, summaries, and persistence
-landscape SVG plots in `output/`.
+The three analysis commands regenerate the CSV reports, summaries, and plots
+in `output/` and `outputs/complex_phase/`.
 
-Los dos primeros comandos regeneran los informes CSV, resumenes y graficos SVG
-del paisaje de persistencia en `output/`.
+Los tres comandos de analisis regeneran los informes CSV, resumenes y graficos
+en `output/` y `outputs/complex_phase/`.
 
 Focused framework documentation / Documentacion del marco enfocado:
 [docs/persistence_framework.md](docs/persistence_framework.md).
@@ -88,3 +88,46 @@ Generated numerical results / Resultados numericos generados:
 ### Exploratory Clusters / Clusters Exploratorios
 
 ![Exploratory adjacent-gap clusters](output/persistence/e_cluster_landscape.svg)
+
+## Complex Phase Landscape / Paisaje de Fase Compleja
+
+The complex phase branch maps finite particle persistence cycles onto the unit
+circle for bases `2`, `e`, `pi`, `phi`, and `10`. This is an exploratory
+numerical representation. Angular alignment does not imply a physical law,
+preferred base, or resonance mechanism.
+
+La rama de fase compleja proyecta ciclos de persistencia finitos sobre el
+circulo unidad para las bases `2`, `e`, `pi`, `phi` y `10`. Es una
+representacion numerica exploratoria. La alineacion angular no implica una ley
+fisica, una base preferida ni un mecanismo de resonancia.
+
+Generated numerical results / Resultados numericos generados:
+
+- [Complex phase table / Tabla de fase compleja](data/complex_phase_table.csv)
+- [Circular gaps / Huecos circulares](data/complex_phase_gaps.csv)
+- [Circular metrics / Metricas circulares](data/complex_phase_summary.csv)
+- [Analysis notes / Notas del analisis](docs/complex_phase_gap_analysis.md)
+
+### Unit Circle, Base 10 / Circulo Unidad, Base 10
+
+![Complex persistence phase on the unit circle for base 10](outputs/complex_phase/unit_circle_base_10.png)
+
+### Polar Landscape, Base 10 / Paisaje Polar, Base 10
+
+![Normalized persistence radius versus phase for base 10](outputs/complex_phase/polar_base_10.png)
+
+### Frequency vs Phase / Frecuencia vs Fase
+
+![Compton frequency versus complex persistence phase](outputs/complex_phase/frequency_vs_phase.png)
+
+### Persistence vs Phase / Persistencia vs Fase
+
+![Persistence cycles versus complex persistence phase](outputs/complex_phase/persistence_vs_phase.png)
+
+### Largest Circular Gaps / Mayores Huecos Circulares
+
+![Largest circular gaps by logarithmic base](outputs/complex_phase/gap_ranking_top10.png)
+
+### Phase Fraction Heatmap / Mapa de Calor de Fraccion de Fase
+
+![Particle phase fractions across logarithmic bases](outputs/complex_phase/phase_fraction_heatmap.png)
