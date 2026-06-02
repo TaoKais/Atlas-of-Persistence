@@ -393,3 +393,54 @@ cilindro de referencia.
 | base 2 | base pi | base 10 |
 | --- | --- | --- |
 | <img src="outputs/cylindrical_helicoid/helicoid_base_2.png" alt="Cylindrical helicoid for base 2" width="300"> | <img src="outputs/cylindrical_helicoid/helicoid_base_pi.png" alt="Cylindrical helicoid for base pi" width="300"> | <img src="outputs/cylindrical_helicoid/helicoid_base_10.png" alt="Cylindrical helicoid for base 10" width="300"> |
+
+## Golden Ratio Spiral Robustness / Robustez de la Espiral Aurea
+
+This falsification-oriented analysis tests whether base `phi` produces unusually
+coherent radial or helical geometry compared with nearby and unrelated bases.
+The golden ratio is not assumed physically relevant. A visual spiral, a fit, or
+the exploratory combined score does not imply physical significance.
+
+Este analisis orientado a la falsacion comprueba si la base `phi` produce una
+geometria radial o helicoidal inusualmente coherente frente a bases cercanas y
+no relacionadas. No se supone que la proporcion aurea tenga relevancia fisica.
+Una espiral visual, un ajuste o la puntuacion exploratoria combinada no implican
+significado fisico.
+
+- [Golden ratio spiral report / Informe de la espiral aurea](docs/golden_ratio_spiral_analysis.md)
+- [Base metrics / Metricas por base](data/golden_ratio_base_metrics.csv)
+- [Randomized controls / Controles aleatorios](data/golden_ratio_control_comparison.csv)
+- [Ordering sensitivity / Sensibilidad al orden](data/golden_ratio_phi_ordering_fits.csv)
+- [Stable-particle modes / Modos para particulas estables](data/golden_ratio_stable_mode_metrics.csv)
+
+### Base Scan / Barrido de Bases
+
+| Golden-spiral error / Error de espiral aurea | Spiral fit R2 / R2 del ajuste | Heuristic coherence / Coherencia heuristica |
+| --- | --- | --- |
+| <img src="outputs/golden_ratio_spiral/base_vs_golden_spiral_error.png" alt="Golden spiral error across logarithmic bases" width="300"> | <img src="outputs/golden_ratio_spiral/base_vs_spiral_fit_R2.png" alt="Radial spiral fit R2 across logarithmic bases" width="300"> | <img src="outputs/golden_ratio_spiral/base_vs_geometry_coherence_score.png" alt="Exploratory geometry coherence score across logarithmic bases" width="300"> |
+
+| Phi neighborhood / Entorno de phi | Real versus randomized controls / Datos reales frente a controles aleatorios |
+| --- | --- |
+| <img src="outputs/golden_ratio_spiral/phi_neighborhood_zoom.png" alt="Exploratory score near phi" width="420"> | <img src="outputs/golden_ratio_spiral/real_vs_randomized_controls.png" alt="Real phi score compared with randomized controls" width="420"> |
+
+### Helicoid Views / Vistas Helicoidales
+
+| Radial phi | Radial pi | Radial e | Radial 10 |
+| --- | --- | --- | --- |
+| <img src="outputs/golden_ratio_spiral/radial_helicoid_phi.png" alt="Radial helicoid for base phi" width="220"> | <img src="outputs/golden_ratio_spiral/radial_helicoid_pi.png" alt="Radial helicoid for base pi" width="220"> | <img src="outputs/golden_ratio_spiral/radial_helicoid_e.png" alt="Radial helicoid for base e" width="220"> | <img src="outputs/golden_ratio_spiral/radial_helicoid_10.png" alt="Radial helicoid for base 10" width="220"> |
+
+| Cylindrical phi / Cilindrica phi | Conical phi / Conica phi | Top-down phi / Vista superior phi |
+| --- | --- | --- |
+| <img src="outputs/golden_ratio_spiral/cylindrical_helicoid_phi.png" alt="Cylindrical helicoid for base phi" width="300"> | <img src="outputs/golden_ratio_spiral/conical_helicoid_phi.png" alt="Conical helicoid for base phi" width="300"> | <img src="outputs/golden_ratio_spiral/top_down_polar_projection_phi.png" alt="Top-down radial projection for base phi" width="300"> |
+
+### Fit Diagnostics / Diagnostico del Ajuste
+
+| Spiral fit overlay / Superposicion del ajuste | Residuals / Residuos |
+| --- | --- |
+| <img src="outputs/golden_ratio_spiral/spiral_fit_overlay_phi.png" alt="Exploratory logarithmic spiral fit overlay for base phi" width="420"> | <img src="outputs/golden_ratio_spiral/spiral_fit_residuals_phi.png" alt="Residuals for the exploratory phi spiral fit" width="420"> |
+
+### Animations / Animaciones
+
+![Animated base sweep around phi](outputs/golden_ratio_spiral/animated_base_sweep_around_phi.gif)
+
+![Rotating radial helicoid for phi](outputs/golden_ratio_spiral/rotating_3d_phi.gif)
