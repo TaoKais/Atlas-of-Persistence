@@ -26,11 +26,13 @@ python -m src.persistence
 python -m src.complex_phase
 python -m src.gap_geometry
 python -m src.gap_pair_structure
+python -m src.dynamic_phase_structure
 python -m unittest discover -s tests -v
 ```
 
-The five analysis commands regenerate the CSV reports, summaries, and plots
-in `output/`, `outputs/complex_phase/`, and `outputs/gap_geometry/`.
+The six analysis commands regenerate the CSV reports, summaries, plots, and
+dynamic base-scan animations in `output/`, `outputs/complex_phase/`,
+`outputs/gap_geometry/`, and `outputs/base_scan/`.
 
 Los cinco comandos de analisis regeneran los informes CSV, resumenes y graficos
 en `output/`, `outputs/complex_phase/` y `outputs/gap_geometry/`.
@@ -46,6 +48,10 @@ Gap-center polygon analysis / Analisis poligonal de centros de huecos:
 
 Gap-pair structure analysis / Analisis estructural de pares de huecos:
 [docs/gap_pair_structure_analysis.md](docs/gap_pair_structure_analysis.md).
+
+Dynamic base and phase-structure scan / Barrido dinamico de base y estructura
+de fase:
+[docs/dynamic_phase_structure_report.md](docs/dynamic_phase_structure_report.md).
 
 ## Persistence Landscape / Paisaje de Persistencia
 
