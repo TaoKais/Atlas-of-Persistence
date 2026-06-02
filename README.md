@@ -206,3 +206,54 @@ una base preferida.
 | Symmetry score / Simetria | Polygon area / Area poligonal | Best symmetry / Mejor simetria |
 | --- | --- | --- |
 | <img src="outputs/gap_geometry/symmetry_score_by_base_and_k.png" alt="Gap-center symmetry score by base and top K" width="300"> | <img src="outputs/gap_geometry/polygon_area_by_base_and_k.png" alt="Gap-center polygon area by base and top K" width="300"> | <img src="outputs/gap_geometry/best_symmetry_score_radar.png" alt="Best gap-center symmetry score by base" width="300"> |
+
+## Dynamic Base Scan / Barrido Dinamico de Base
+
+The dynamic scan evaluates 5,000 evenly spaced logarithmic bases from `1.2`
+to `50`. It tracks circular statistics, gaps, gap-center polygons, family and
+interaction centroids, and persistent particle neighbors. The resulting
+patterns are exploratory and do not establish a physically preferred base.
+
+El barrido dinamico evalua 5.000 bases logaritmicas equiespaciadas entre `1.2`
+y `50`. Sigue estadisticas circulares, huecos, poligonos de centros de huecos,
+centroides por familia e interaccion y vecinos persistentes entre particulas.
+Los patrones resultantes son exploratorios y no establecen una base fisicamente
+preferida.
+
+Generated numerical results / Resultados numericos generados:
+
+- [Dynamic scan report / Informe del barrido dinamico](docs/dynamic_phase_structure_report.md)
+- [Base scan metrics / Metricas del barrido de base](data/base_scan_metrics.csv)
+- [Gap geometry metrics / Metricas geometricas de huecos](data/gap_geometry_metrics.csv)
+- [Family and interaction alignment / Alineacion por familia e interaccion](data/family_alignment_metrics.csv)
+- [Persistent neighbors / Vecinos persistentes](data/persistent_neighbors.csv)
+- [Particle phase stability / Estabilidad de fase por particula](data/particle_phase_stability.csv)
+- [Special-base metrics / Metricas de bases especiales](data/special_base_metrics.csv)
+
+### Continuous Metrics / Metricas Continuas
+
+| Largest gap / Mayor hueco | Entropy / Entropia |
+| --- | --- |
+| <img src="outputs/base_scan/base_vs_largest_gap.png" alt="Largest circular phase gap across logarithmic bases" width="420"> | <img src="outputs/base_scan/base_vs_entropy.png" alt="Circular phase entropy across logarithmic bases" width="420"> |
+
+| Symmetry score / Simetria | Resultant length / Longitud resultante |
+| --- | --- |
+| <img src="outputs/base_scan/base_vs_symmetry_score.png" alt="Gap-center polygon symmetry score across logarithmic bases" width="420"> | <img src="outputs/base_scan/base_vs_resultant_length.png" alt="Circular resultant length across logarithmic bases" width="420"> |
+
+### Persistent Relationships / Relaciones Persistentes
+
+| Persistent neighbor network / Red de vecinos persistentes | Family centroid evolution / Evolucion de centroides por familia | Interaction centroid evolution / Evolucion de centroides por interaccion |
+| --- | --- | --- |
+| <img src="outputs/base_scan/persistent_neighbor_network.png" alt="Network of particle pairs that remain neighbors across logarithmic bases" width="300"> | <img src="outputs/base_scan/family_centroid_evolution.png" alt="Family centroid evolution across logarithmic bases" width="300"> | <img src="outputs/base_scan/interaction_centroid_evolution.png" alt="Interaction centroid evolution across logarithmic bases" width="300"> |
+
+### Structured-Base Rankings / Clasificacion de Bases Estructuradas
+
+| Most structured / Mas estructuradas | Least structured / Menos estructuradas |
+| --- | --- |
+| <img src="outputs/base_scan/top_10_most_structured_bases.png" alt="Top ten sampled bases by exploratory symmetry score" width="420"> | <img src="outputs/base_scan/top_10_least_structured_bases.png" alt="Bottom ten sampled bases by exploratory symmetry score" width="420"> |
+
+### Dynamic Animation / Animacion Dinamica
+
+![Dynamic persistence phase scan](outputs/base_scan/dynamic_phase_scan.gif)
+
+[MP4 animation / Animacion MP4](outputs/base_scan/dynamic_phase_scan.mp4)
