@@ -29,10 +29,11 @@ python -m src.gap_pair_structure
 python -m src.dynamic_phase_structure
 python -m src.harmonic_base_geometry
 python -m src.stable_particle_sensitivity
+python -m src.exploratory_3d_geometry
 python -m unittest discover -s tests -v
 ```
 
-The eight analysis commands regenerate the CSV reports, summaries, plots, and
+The nine analysis commands regenerate the CSV reports, summaries, plots, and
 dynamic base-scan animations in `output/`, `outputs/complex_phase/`,
 `outputs/gap_geometry/`, and `outputs/base_scan/`.
 
@@ -319,3 +320,34 @@ son supuestos numericos, no vidas medias medidas.
 | Unit circles / Circulos unidad | Lepton trajectories / Trayectorias de leptones |
 | --- | --- |
 | <img src="outputs/stable_sensitivity/unit_circles_variants.png" alt="Unit-circle comparison for finite-only and stable-truncated variants" width="420"> | <img src="outputs/stable_sensitivity/lepton_phase_trajectories.png" alt="Electron, muon, and tau phase trajectories under stable truncation" width="420"> |
+
+## Exploratory 3D Geometry / Geometria 3D Exploratoria
+
+This study investigates why helix-like views appear when wrapped logarithmic
+phases are plotted against persistence. It searches for unexpected geometry
+without treating visual patterns as physical evidence.
+
+Este estudio investiga por que aparecen vistas helicoidales cuando las fases
+logaritmicas envueltas se representan frente a la persistencia. Busca geometria
+inesperada sin tratar los patrones visuales como evidencia fisica.
+
+- [Exploratory geometry report / Informe de geometria exploratoria](docs/exploratory_geometry.md)
+- [Reference coordinates / Coordenadas de referencia](data/exploratory_geometry_coordinates.csv)
+- [Density cloud / Nube de densidad](data/exploratory_density_cloud.csv)
+- [Gap constellations / Constelaciones de huecos](data/exploratory_gap_constellations.csv)
+- [Interactive radial viewer / Visor radial interactivo](outputs/exploratory_3d/interactive_radial_geometry.html)
+
+| Cylindrical helix / Helice cilindrica | Radial helix / Helice radial | Conical helix / Helice conica |
+| --- | --- | --- |
+| <img src="outputs/exploratory_3d/cylindrical.png" alt="Cylindrical persistence helix" width="300"> | <img src="outputs/exploratory_3d/radial.png" alt="Radial persistence helix" width="300"> | <img src="outputs/exploratory_3d/conical.png" alt="Conical persistence helix" width="300"> |
+
+| Toroidal projection / Proyeccion toroidal | Spherical projection / Proyeccion esferica | Randomized controls / Controles aleatorios |
+| --- | --- | --- |
+| <img src="outputs/exploratory_3d/toroidal.png" alt="Toroidal persistence projection" width="300"> | <img src="outputs/exploratory_3d/spherical.png" alt="Spherical persistence projection" width="300"> | <img src="outputs/exploratory_3d/randomized_controls.png" alt="Cylindrical helix randomized controls" width="300"> |
+
+![Connected gap-center constellations](outputs/exploratory_3d/gap_center_polygon_panel.png)
+
+![Rotating radial helix](outputs/exploratory_3d/rotating_radial_helix.gif)
+
+[Rotating MP4](outputs/exploratory_3d/rotating_radial_helix.mp4) |
+[Base-sweep MP4](outputs/exploratory_3d/base_sweep_radial_helix.mp4)
