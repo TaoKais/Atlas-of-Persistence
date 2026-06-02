@@ -8,6 +8,23 @@ Marco matematico y computacional exploratorio para estudiar persistencia de
 identidad fisica, frecuencia caracteristica, estabilidad, compactacion
 gravitatoria, exergia y futuros accesibles.
 
+## Archipelago Explorer
+
+Archipelago Explorer is an exploratory visualization tool. It does not claim
+to discover new particles, new laws, or hidden physical symmetries. It provides
+an interface for testing whether frequency, lifetime, persistence cycles and
+phase mappings reveal robust structures in known physical datasets.
+
+Run the Dockerized browser app at `http://localhost:8000`:
+
+```powershell
+cd archipelago-explorer
+docker compose up --build -d
+```
+
+See [the app README](archipelago-explorer/README.md) and
+[scientific scope](archipelago-explorer/docs/scientific_scope.md).
+
 ## Documentation / Documentacion
 
 - [English](README.en.md)
