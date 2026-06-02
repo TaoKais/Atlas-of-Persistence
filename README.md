@@ -28,10 +28,11 @@ python -m src.gap_geometry
 python -m src.gap_pair_structure
 python -m src.dynamic_phase_structure
 python -m src.harmonic_base_geometry
+python -m src.stable_particle_sensitivity
 python -m unittest discover -s tests -v
 ```
 
-The seven analysis commands regenerate the CSV reports, summaries, plots, and
+The eight analysis commands regenerate the CSV reports, summaries, plots, and
 dynamic base-scan animations in `output/`, `outputs/complex_phase/`,
 `outputs/gap_geometry/`, and `outputs/base_scan/`.
 
@@ -290,3 +291,31 @@ fisica.
 
 [Rotating MP4](outputs/harmonic_base_geometry/rotating_3d_view.mp4) |
 [Base-sweep MP4](outputs/harmonic_base_geometry/base_sweep_3d.mp4)
+
+## Stable Particle Sensitivity / Sensibilidad de Particulas Estables
+
+This sensitivity test compares finite-lifetime-only phases with controlled
+stable-particle truncations. The truncation values are numerical assumptions,
+not measured lifetimes.
+
+Este test de sensibilidad compara fases con vidas medias finitas con
+truncamientos controlados para particulas estables. Los valores de truncamiento
+son supuestos numericos, no vidas medias medidas.
+
+- [Sensitivity report / Informe de sensibilidad](docs/stable_particle_sensitivity.md)
+- [Sensitivity summary / Resumen de sensibilidad](data/stable_sensitivity_summary.csv)
+- [Centroid table / Tabla de centroides](data/stable_sensitivity_centroids.csv)
+- [Particle phases / Fases de particulas](data/stable_sensitivity_phases.csv)
+- [Continuous comparison / Comparacion continua](data/stable_sensitivity_base_scan.csv)
+
+| Family centroids: finite only / Centroides: solo finitas | Family centroids: stable truncation / Centroides: truncamiento estable |
+| --- | --- |
+| <img src="outputs/stable_sensitivity/family_centroids_finite_only.png" alt="Family centroids using finite-lifetime particles only" width="420"> | <img src="outputs/stable_sensitivity/family_centroids_stable_truncated.png" alt="Family centroids with stable particles truncated at 1e35 seconds" width="420"> |
+
+| Centroid difference / Diferencia de centroides | Base-scan comparison / Comparacion del barrido |
+| --- | --- |
+| <img src="outputs/stable_sensitivity/family_centroid_difference.png" alt="Family centroid difference between stable-truncated and finite-only variants" width="420"> | <img src="outputs/stable_sensitivity/base_scan_comparison.png" alt="Top-4 symmetry comparison for stable-truncated and finite-only variants" width="420"> |
+
+| Unit circles / Circulos unidad | Lepton trajectories / Trayectorias de leptones |
+| --- | --- |
+| <img src="outputs/stable_sensitivity/unit_circles_variants.png" alt="Unit-circle comparison for finite-only and stable-truncated variants" width="420"> | <img src="outputs/stable_sensitivity/lepton_phase_trajectories.png" alt="Electron, muon, and tau phase trajectories under stable truncation" width="420"> |
