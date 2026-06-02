@@ -30,10 +30,11 @@ python -m src.dynamic_phase_structure
 python -m src.harmonic_base_geometry
 python -m src.stable_particle_sensitivity
 python -m src.exploratory_3d_geometry
+python -m src.cylindrical_helicoid_bases
 python -m unittest discover -s tests -v
 ```
 
-The nine analysis commands regenerate the CSV reports, summaries, plots, and
+The ten analysis commands regenerate the CSV reports, summaries, plots, and
 dynamic base-scan animations in `output/`, `outputs/complex_phase/`,
 `outputs/gap_geometry/`, and `outputs/base_scan/`.
 
@@ -351,3 +352,27 @@ inesperada sin tratar los patrones visuales como evidencia fisica.
 
 [Rotating MP4](outputs/exploratory_3d/rotating_radial_helix.mp4) |
 [Base-sweep MP4](outputs/exploratory_3d/base_sweep_radial_helix.mp4)
+
+## Cylindrical Helicoids Across Bases / Helicoides Cilindricos por Base
+
+This exploratory comparison plots the same finite-lifetime entities on a
+cylindrical helicoid for nine logarithmic bases. Height remains `log10(N)`;
+base changes rotate particles around the reference cylinder.
+
+Esta comparacion exploratoria representa las mismas entidades con vida media
+finita sobre un helicoide cilindrico para nueve bases logaritmicas. La altura
+permanece como `log10(N)`; cambiar la base rota las particulas alrededor del
+cilindro de referencia.
+
+- [Helicoid report / Informe de helicoides](docs/cylindrical_helicoid_bases.md)
+- [Grouping metrics / Metricas de agrupacion](data/cylindrical_helicoid_metrics.csv)
+- [Persistent neighbors / Vecinos persistentes](data/helicoid_persistent_neighbors.csv)
+- [MATLAB/Wolfram coordinates / Coordenadas MATLAB/Wolfram](data/helicoid_coordinates_by_base.csv)
+
+| All bases / Todas las bases | Grouping metrics / Metricas de agrupacion |
+| --- | --- |
+| <img src="outputs/cylindrical_helicoid/all_bases_grid.png" alt="Cylindrical helicoid comparison across logarithmic bases" width="420"> | <img src="outputs/cylindrical_helicoid/base_comparison_metrics.png" alt="Cylindrical helicoid grouping metrics across logarithmic bases" width="420"> |
+
+| base 2 | base pi | base 10 |
+| --- | --- | --- |
+| <img src="outputs/cylindrical_helicoid/helicoid_base_2.png" alt="Cylindrical helicoid for base 2" width="300"> | <img src="outputs/cylindrical_helicoid/helicoid_base_pi.png" alt="Cylindrical helicoid for base pi" width="300"> | <img src="outputs/cylindrical_helicoid/helicoid_base_10.png" alt="Cylindrical helicoid for base 10" width="300"> |
