@@ -1,6 +1,6 @@
 import Plot from "react-plotly.js";
 import Plotly from "plotly.js-dist-min";
-import type { CalculatedEntity, Gap, Neighbor } from "../utils/analysis";
+import type { CalculatedEntity, Gap, Neighbor, SpiralFit } from "../utils/analysis";
 
 export type View = "frequency" | "persistence" | "circle" | "cylindrical" | "radial" | "gaps" | "neighbors" | "family_centroids" | "interaction_centroids";
 const views: [View, string][] = [["frequency", "Frequency vs lifetime"], ["persistence", "Persistence index"], ["circle", "Unit circle phase"], ["cylindrical", "Cylindrical helicoid 3D"], ["radial", "Radial helicoid 3D"], ["gaps", "Gap centers"], ["neighbors", "Persistent neighbor network"], ["family_centroids", "Family centroid evolution"], ["interaction_centroids", "Interaction centroid evolution"]];
@@ -18,13 +18,14 @@ function centroidTraces(rows: CalculatedEntity[], category: "family" | "dominant
   }) }));
 }
 
-export function VisualizationPanel({ rows, gaps, neighbors, view, onView, minBase, maxBase }: { rows: CalculatedEntity[]; gaps: Gap[]; neighbors: Neighbor[]; view: View; onView: (view: View) => void; minBase: number; maxBase: number }) {
+export function VisualizationPanel({ rows, gaps, neighbors, view, onView, minBase, maxBase, spiral, showSpiralOverlay }: { rows: CalculatedEntity[]; gaps: Gap[]; neighbors: Neighbor[]; view: View; onView: (view: View) => void; minBase: number; maxBase: number; spiral: SpiralFit; showSpiralOverlay: boolean }) {
   let data: any[] = [], layout: any = { paper_bgcolor: "#101722", plot_bgcolor: "#101722", font: { color: "#dbe8f4" }, margin: { t: 48, r: 20, b: 52, l: 62 } };
   if (view === "frequency") data = [{ type: "scatter", mode: "markers+text", x: rows.map((r) => Math.log10(r.compton_frequency_hz)), y: rows.map((r) => Math.log10(r.effective_lifetime_s)), text: rows.map((r) => r.name), textposition: "top center", marker: { color: rows.map(color), size: 9 } }];
   if (view === "persistence") data = [{ type: "bar", x: rows.map((r) => r.name), y: rows.map((r) => r.log10_N), marker: { color: rows.map(color) } }];
   if (view === "circle") data = [{ type: "scatter", mode: "markers+text", x: rows.map((r) => r.x), y: rows.map((r) => r.y), text: rows.map((r) => r.name), textposition: "top center", marker: { color: rows.map(color), size: 10 } }], layout.yaxis = { scaleanchor: "x" };
   if (view === "cylindrical") data = [{ type: "scatter3d", mode: "markers+text", x: rows.map((r) => r.x), y: rows.map((r) => r.y), z: rows.map((r) => r.log10_N), text: rows.map((r) => r.name), marker: { color: rows.map(color), size: 4 } }];
   if (view === "radial") data = [{ type: "scatter3d", mode: "markers+text", x: rows.map((r) => r.radial_x), y: rows.map((r) => r.radial_y), z: rows.map((r) => r.log10_N), text: rows.map((r) => r.name), marker: { color: rows.map(color), size: 4 } }];
+  if (view === "radial" && showSpiralOverlay) data.push({ type: "scatter3d", mode: "lines", name: "exploratory golden spiral reference", x: spiral.overlay.x, y: spiral.overlay.y, z: spiral.overlay.z, line: { color: "#fca311", width: 5 } });
   if (view === "gaps" && gaps.length) { const centers = gaps.slice(0, 4).map((gap) => gap.center_deg * Math.PI / 180), x = centers.map(Math.cos), y = centers.map(Math.sin); data = [
     { type: "scatter", mode: "lines", x: [...x, x[0]], y: [...y, y[0]], line: { color: "#fca311", width: 3 }, name: "top-4 polygon" },
     { type: "scatter", mode: "markers+text", x, y, text: gaps.slice(0, 4).map((gap) => `${gap.from} → ${gap.to}`), textposition: "top center", marker: { color: "#f72585", size: 11 }, name: "gap centers" }

@@ -14,6 +14,11 @@ export interface CalculatedEntity extends Entity {
 }
 export interface Gap { from: string; to: string; gap_deg: number; center_deg: number; }
 export interface Neighbor { particle_a: string; particle_b: string; fraction: number; mean_distance: number; }
+export type SpiralFitOrdering = "sorted_theta" | "sorted_log10_N" | "persistent_neighbor_path" | "nearest_neighbor_3d";
+export interface SpiralFit {
+  fittedK: number; goldenK: number; relativeError: number; R2: number;
+  overlay: { x: number[]; y: number[]; z: number[] };
+}
 
 export const baseOptions = [
   ["2", 2], ["e", Math.E], ["pi", Math.PI], ["phi", constants.phi.value], ["10", 10],
@@ -129,4 +134,39 @@ export function neighborScan(rows: CalculatedEntity[], minBase: number, maxBase:
         mean_distance: distances.reduce((sum, distance) => sum + distance, 0) / distances.length };
     })
   ).sort((a, b) => b.fraction - a.fraction || a.mean_distance - b.mean_distance);
+}
+
+export function spiralFit(rows: CalculatedEntity[], ordering: SpiralFitOrdering): SpiralFit {
+  const phi = constants.phi.value, goldenK = 2 * Math.log(phi) / Math.PI;
+  const distance = (a: CalculatedEntity, b: CalculatedEntity) => Math.hypot(a.radial_x - b.radial_x, a.radial_y - b.radial_y, a.log10_N - b.log10_N);
+  let ordered = [...rows];
+  if (ordering === "sorted_theta") ordered.sort((a, b) => a.theta - b.theta);
+  if (ordering === "sorted_log10_N") ordered.sort((a, b) => a.log10_N - b.log10_N);
+  if (ordering === "persistent_neighbor_path" || ordering === "nearest_neighbor_3d") {
+    const remaining = [...rows].sort((a, b) => a.log10_N - b.log10_N), path = remaining.splice(0, 1);
+    while (remaining.length) {
+      const current = path[path.length - 1];
+      const index = remaining.reduce((best, row, candidate) => distance(current, row) < distance(current, remaining[best]) ? candidate : best, 0);
+      path.push(...remaining.splice(index, 1));
+    }
+    ordered = path;
+  }
+  ordered = ordered.filter((row) => Math.hypot(row.radial_x, row.radial_y) > 0);
+  if (ordered.length < 3) return { fittedK: 0, goldenK, relativeError: 1, R2: 0, overlay: { x: [], y: [], z: [] } };
+  const theta: number[] = [];
+  ordered.forEach((row, index) => {
+    let value = row.theta;
+    if (index) while (value - theta[index - 1] > Math.PI) value -= 2 * Math.PI;
+    if (index) while (value - theta[index - 1] < -Math.PI) value += 2 * Math.PI;
+    theta.push(value);
+  });
+  const logR = ordered.map((row) => Math.log(Math.hypot(row.radial_x, row.radial_y)));
+  const meanTheta = theta.reduce((sum, value) => sum + value, 0) / theta.length, meanR = logR.reduce((sum, value) => sum + value, 0) / logR.length;
+  const fittedK = theta.reduce((sum, value, index) => sum + (value - meanTheta) * (logR[index] - meanR), 0) / (theta.reduce((sum, value) => sum + (value - meanTheta) ** 2, 0) || 1);
+  const intercept = meanR - fittedK * meanTheta, predicted = theta.map((value) => intercept + fittedK * value);
+  const rss = predicted.reduce((sum, value, index) => sum + (logR[index] - value) ** 2, 0), tss = logR.reduce((sum, value) => sum + (value - meanR) ** 2, 0);
+  const goldenReference = theta.map((value) => meanR - goldenK * meanTheta + goldenK * value);
+  const radius = goldenReference.map(Math.exp);
+  return { fittedK, goldenK, relativeError: Math.abs(fittedK - goldenK) / goldenK, R2: tss ? 1 - rss / tss : 0,
+    overlay: { x: theta.map((value, index) => radius[index] * Math.cos(value)), y: theta.map((value, index) => radius[index] * Math.sin(value)), z: ordered.map((row) => row.log10_N) } };
 }
