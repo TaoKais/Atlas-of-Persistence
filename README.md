@@ -27,10 +27,11 @@ python -m src.complex_phase
 python -m src.gap_geometry
 python -m src.gap_pair_structure
 python -m src.dynamic_phase_structure
+python -m src.harmonic_base_geometry
 python -m unittest discover -s tests -v
 ```
 
-The six analysis commands regenerate the CSV reports, summaries, plots, and
+The seven analysis commands regenerate the CSV reports, summaries, plots, and
 dynamic base-scan animations in `output/`, `outputs/complex_phase/`,
 `outputs/gap_geometry/`, and `outputs/base_scan/`.
 
@@ -257,3 +258,35 @@ Generated numerical results / Resultados numericos generados:
 ![Dynamic persistence phase scan](outputs/base_scan/dynamic_phase_scan.gif)
 
 [MP4 animation / Animacion MP4](outputs/base_scan/dynamic_phase_scan.mp4)
+
+## Harmonic Base Geometry / Geometria Armonica de Bases
+
+The harmonic geometry analysis detects local symmetry-score peaks, compares
+them with simple mathematical expressions, computes an FFT spectrum, and
+exports 2D and 3D geometry for the top 20 distinct peaks. Numerical proximity
+does not establish a preferred constant or physical resonance.
+
+El analisis de geometria armonica detecta maximos locales de simetria, los
+compara con expresiones matematicas sencillas, calcula un espectro FFT y
+exporta geometria 2D y 3D para los 20 maximos distintos principales. La
+proximidad numerica no establece una constante preferida ni una resonancia
+fisica.
+
+- [Harmonic geometry report / Informe de geometria armonica](docs/harmonic_base_geometry.md)
+- [Detected peaks / Maximos detectados](data/base_peaks.csv)
+- [Constant matches / Coincidencias con constantes](data/peak_constant_matches.csv)
+- [Gap geometry / Geometria de huecos](data/harmonic_gap_geometry.csv)
+- [Persistent neighbors / Vecinos persistentes](data/harmonic_persistent_neighbors.csv)
+
+### FFT Spectrum / Espectro FFT
+
+![FFT spectrum of symmetry score](outputs/harmonic_base_geometry/fft_spectrum.png)
+
+### 3D Animations / Animaciones 3D
+
+![Rotating radial persistence spiral](outputs/harmonic_base_geometry/rotating_3d_view.gif)
+
+![Base-sweep radial persistence spiral](outputs/harmonic_base_geometry/base_sweep_3d.gif)
+
+[Rotating MP4](outputs/harmonic_base_geometry/rotating_3d_view.mp4) |
+[Base-sweep MP4](outputs/harmonic_base_geometry/base_sweep_3d.mp4)
