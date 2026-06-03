@@ -55,17 +55,19 @@ python -m src.stable_particle_sensitivity
 python -m src.exploratory_3d_geometry
 python -m src.cylindrical_helicoid_bases
 python -m src.invariant_graph_validation
+python -m src.mass_lifetime_interactions
 python -m unittest discover -s tests -v
 ```
 
-The eleven analysis commands regenerate the CSV reports, summaries, plots, and
+The twelve analysis commands regenerate the CSV reports, summaries, plots, and
 dynamic base-scan animations in `output/`, `outputs/complex_phase/`,
 `outputs/gap_geometry/`, `outputs/base_scan/`, and
-`outputs/invariant_graph_validation/`.
+`outputs/invariant_graph_validation/`, and
+`outputs/mass_lifetime_interactions/`.
 
-Los once comandos de analisis regeneran los informes CSV, resumenes y graficos
+Los doce comandos de analisis regeneran los informes CSV, resumenes y graficos
 en `output/`, `outputs/complex_phase/`, `outputs/gap_geometry/` y
-`outputs/invariant_graph_validation/`.
+`outputs/invariant_graph_validation/` y `outputs/mass_lifetime_interactions/`.
 
 Focused framework documentation / Documentacion del marco enfocado:
 [docs/persistence_framework.md](docs/persistence_framework.md).
@@ -86,6 +88,10 @@ de fase:
 Invariant graph validation with explicit tolerances / Validacion de grafos
 invariantes con tolerancias explicitas:
 [docs/invariant_graph_validation.md](docs/invariant_graph_validation.md).
+
+Mass-lifetime interaction validation / Validacion masa-vida media por
+interaccion:
+[docs/mass_lifetime_interaction_validation.md](docs/mass_lifetime_interaction_validation.md).
 
 ## Persistence Landscape / Paisaje de Persistencia
 
@@ -136,6 +142,50 @@ Generated numerical results / Resultados numericos generados:
 ### Exploratory Clusters / Clusters Exploratorios
 
 ![Exploratory adjacent-gap clusters](output/persistence/e_cluster_landscape.svg)
+
+## Mass-Lifetime Interaction Validation / Validacion Masa-Vida Media por Interaccion
+
+This validation tests finite-lifetime unstable particles only. It separates the
+measured mass-lifetime relation from the partly tautological identity
+`N = f_C * tau`, where `f_C` is proportional to mass, and checks whether
+dominant interaction labels explain lifetime residuals beyond mass. It is a
+descriptive validation layer and does not claim new physics.
+
+Esta validacion usa solo particulas inestables con vida media finita. Separa la
+relacion medida masa-vida media de la identidad parcialmente tautologica
+`N = f_C * tau`, donde `f_C` es proporcional a la masa, y comprueba si las
+etiquetas de interaccion dominante explican residuos de vida media mas alla de
+la masa. Es una capa descriptiva de validacion y no afirma nueva fisica.
+
+- [Validation report / Informe de validacion](docs/mass_lifetime_interaction_validation.md)
+- [Tolerances / Tolerancias](config/mass_lifetime_validation_tolerances.json)
+- [Global correlation / Correlacion global](data/mass_lifetime_global_correlation.csv)
+- [By-interaction regression / Regresion por interaccion](data/mass_lifetime_by_interaction.csv)
+- [Expectation comparison / Comparacion con expectativas](data/scaling_expectation_comparison.csv)
+- [Tautology decomposition / Descomposicion de tautologia](data/tautology_decomposition.csv)
+- [Interaction significance / Significancia de interaccion](data/interaction_significance.csv)
+- [Randomized controls / Controles aleatorizados](data/mass_lifetime_controls.csv)
+
+Current cautious result: for `n = 29` finite-lifetime particles, global Pearson
+rho is `-0.555603` with permutation p-value `0.00169983`, and adding
+interaction labels to the mass-only model improves adjusted R2 under the
+declared `p < 0.05` threshold. The weak interaction fitted exponent is compared
+with `-5` only as an approximate muon-like reference, not as a universal law.
+
+Resultado cauteloso actual: para `n = 29` particulas con vida media finita, la
+rho de Pearson global es `-0.555603` con p-valor de permutacion `0.00169983`,
+y anadir etiquetas de interaccion al modelo solo-masa mejora el R2 ajustado
+bajo el umbral declarado `p < 0.05`. El exponente ajustado de interaccion debil
+se compara con `-5` solo como referencia aproximada tipo muon, no como ley
+universal.
+
+| Mass vs lifetime / Masa vs vida media | Residuals / Residuos |
+| --- | --- |
+| <img src="outputs/mass_lifetime_interactions/01_log_mass_vs_log_lifetime.png" alt="Log mass versus log lifetime colored by interaction" width="420"> | <img src="outputs/mass_lifetime_interactions/03_lifetime_residuals_after_mass_fit.png" alt="Lifetime residuals after global mass fit" width="420"> |
+
+| Interaction exponents / Exponentes por interaccion | Model comparison / Comparacion de modelos |
+| --- | --- |
+| <img src="outputs/mass_lifetime_interactions/04_alpha_by_interaction.png" alt="Fitted mass-lifetime exponent by interaction with confidence intervals" width="420"> | <img src="outputs/mass_lifetime_interactions/06_model_comparison.png" alt="Adjusted R2, AIC, and BIC model comparison" width="420"> |
 
 ## Complex Phase Landscape / Paisaje de Fase Compleja
 
