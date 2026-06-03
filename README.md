@@ -8,6 +8,59 @@ Marco matematico y computacional exploratorio para estudiar persistencia de
 identidad fisica, frecuencia caracteristica, estabilidad, compactacion
 gravitatoria, exergia y futuros accesibles.
 
+## Project Summary / Resumen del Proyecto
+
+Atlas of Persistence is a reproducible analysis suite and browser explorer for
+testing whether measured particle/entity properties show stable descriptive
+structure across persistence cycles, logarithmic phase maps, geometric
+projections, graph relationships, and mass-lifetime scaling. The repository
+generates CSV result tables, Markdown reports, static figures, animations, and
+an interactive visualization app. All results are exploratory and explicitly do
+not claim new physics.
+
+Atlas of Persistence es una suite reproducible de analisis y un explorador web
+para comprobar si propiedades medidas de particulas o entidades muestran
+estructura descriptiva estable en ciclos de persistencia, mapas de fase
+logaritmica, proyecciones geometricas, relaciones de grafo y escalado
+masa-vida media. El repositorio genera tablas CSV, informes Markdown, figuras,
+animaciones y una aplicacion interactiva. Todos los resultados son
+exploratorios y no afirman nueva fisica.
+
+Current pushed branch / Rama publicada actual:
+`validate-mass-lifetime-interactions`
+
+Latest commit / Ultimo commit:
+use `git log -1 --oneline` on this branch.
+
+Main validation layers / Capas principales de validacion:
+
+- Persistence landscape: compares mass, Compton frequency, lifetime, and
+  dimensionless persistence cycles.
+- Complex phase and gap geometry: wraps `N` into logarithmic phase spaces and
+  checks whether visual gap structures are stable or artifacts.
+- Dynamic base scans and harmonic geometry: tests whether apparent structures
+  persist under continuous base changes.
+- 3D helicoid and golden-ratio controls: visualizes coordinate effects and
+  falsifies special-base interpretations.
+- Invariant graph validation: checks persistent neighbor relationships against
+  tolerances and randomized controls.
+- Mass-lifetime interaction validation: separates the tautological mass term in
+  `N = f_C * tau` from measured lifetime scaling and interaction-class effects.
+
+Representative outputs / Salidas representativas:
+
+| Persistence landscape | Complex phase |
+| --- | --- |
+| <img src="output/persistence/c_frequency_vs_persistence.svg" alt="Frequency versus persistence index" width="420"> | <img src="outputs/complex_phase/unit_circle_base_2.png" alt="Complex persistence phase on the unit circle for base 2" width="420"> |
+
+| Dynamic base scan | Invariant graph validation |
+| --- | --- |
+| <img src="outputs/base_scan/base_vs_symmetry_score.png" alt="Gap-center polygon symmetry score across logarithmic bases" width="420"> | <img src="outputs/invariant_graph_validation/01_persistent_neighbor_graph.png" alt="Persistent neighbor graph with explicit tolerance labels" width="420"> |
+
+| Mass-lifetime validation | Interaction exponent fit |
+| --- | --- |
+| <img src="outputs/mass_lifetime_interactions/01_log_mass_vs_log_lifetime.png" alt="Log mass versus log lifetime colored by interaction" width="420"> | <img src="outputs/mass_lifetime_interactions/04_alpha_by_interaction.png" alt="Fitted mass-lifetime exponent by interaction with confidence intervals" width="420"> |
+
 ## Archipelago Explorer
 
 Archipelago Explorer is an exploratory visualization tool. It does not claim
