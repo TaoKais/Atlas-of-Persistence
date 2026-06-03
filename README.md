@@ -48,15 +48,18 @@ python -m src.harmonic_base_geometry
 python -m src.stable_particle_sensitivity
 python -m src.exploratory_3d_geometry
 python -m src.cylindrical_helicoid_bases
+python -m src.invariant_graph_validation
 python -m unittest discover -s tests -v
 ```
 
-The ten analysis commands regenerate the CSV reports, summaries, plots, and
+The eleven analysis commands regenerate the CSV reports, summaries, plots, and
 dynamic base-scan animations in `output/`, `outputs/complex_phase/`,
-`outputs/gap_geometry/`, and `outputs/base_scan/`.
+`outputs/gap_geometry/`, `outputs/base_scan/`, and
+`outputs/invariant_graph_validation/`.
 
-Los cinco comandos de analisis regeneran los informes CSV, resumenes y graficos
-en `output/`, `outputs/complex_phase/` y `outputs/gap_geometry/`.
+Los once comandos de analisis regeneran los informes CSV, resumenes y graficos
+en `output/`, `outputs/complex_phase/`, `outputs/gap_geometry/` y
+`outputs/invariant_graph_validation/`.
 
 Focused framework documentation / Documentacion del marco enfocado:
 [docs/persistence_framework.md](docs/persistence_framework.md).
@@ -73,6 +76,10 @@ Gap-pair structure analysis / Analisis estructural de pares de huecos:
 Dynamic base and phase-structure scan / Barrido dinamico de base y estructura
 de fase:
 [docs/dynamic_phase_structure_report.md](docs/dynamic_phase_structure_report.md).
+
+Invariant graph validation with explicit tolerances / Validacion de grafos
+invariantes con tolerancias explicitas:
+[docs/invariant_graph_validation.md](docs/invariant_graph_validation.md).
 
 ## Persistence Landscape / Paisaje de Persistencia
 
@@ -444,3 +451,57 @@ significado fisico.
 ![Animated base sweep around phi](outputs/golden_ratio_spiral/animated_base_sweep_around_phi.gif)
 
 ![Rotating radial helicoid for phi](outputs/golden_ratio_spiral/rotating_3d_phi.gif)
+
+## Invariant Graph Validation / Validacion de Grafos Invariantes
+
+This validation layer tests whether particle/entity relationships remain close
+across logarithmic bases, coordinate representations, tolerance thresholds, and
+randomized controls. It is explicitly exploratory: persistent graph structure
+does not imply physical interaction.
+
+Esta capa de validacion comprueba si las relaciones entre particulas o
+entidades permanecen cercanas al cambiar bases logaritmicas, representaciones
+de coordenadas, tolerancias y controles aleatorios. Es explicitamente
+exploratoria: una estructura persistente de grafo no implica interaccion
+fisica.
+
+- [Validation report / Informe de validacion](docs/invariant_graph_validation.md)
+- [Invariant edges / Aristas invariantes](data/invariant_edges.csv)
+- [Graph validation summary / Resumen de validacion](data/graph_validation_summary.csv)
+- [Robust clusters / Clusters robustos](data/robust_clusters.csv)
+- [Tolerance configuration / Configuracion de tolerancias](config/tolerances.json)
+
+Current conclusion so far: a small set of edges is persistent under the primary
+10 degree angular tolerance across 2009 tested bases, including B0 / Bs0,
+W / Z, B_plus / Bs0, and omega_782 / top. These are candidates for further
+robustness testing, not discoveries. Several distance and nearest-neighbor
+clusters look visually stable but do not pass randomized-control checks, so
+they should be treated as weak candidates or likely artifacts.
+
+Conclusion actual: un pequeno conjunto de aristas es persistente con la
+tolerancia angular primaria de 10 grados en 2009 bases probadas, incluyendo
+B0 / Bs0, W / Z, B_plus / Bs0 y omega_782 / top. Son candidatos para pruebas
+adicionales de robustez, no descubrimientos. Varios clusters por distancia y
+vecinos cercanos parecen estables visualmente, pero no superan los controles
+aleatorios, por lo que deben tratarse como candidatos debiles o artefactos
+probables.
+
+| Persistent graph / Grafo persistente | Tolerance sweep / Barrido de tolerancia |
+| --- | --- |
+| <img src="outputs/invariant_graph_validation/01_persistent_neighbor_graph.png" alt="Persistent neighbor graph with explicit tolerance labels" width="420"> | <img src="outputs/invariant_graph_validation/02_tolerance_sweep_heatmap.png" alt="Tolerance sweep heatmap of persistence fractions" width="420"> |
+
+| Base robustness / Robustez por base | Randomized controls / Controles aleatorios |
+| --- | --- |
+| <img src="outputs/invariant_graph_validation/03_base_robustness_heatmap.png" alt="Base robustness heatmap for graph edges" width="420"> | <img src="outputs/invariant_graph_validation/04_real_vs_randomized_graph_metric_plots.png" alt="Observed graph metrics compared with randomized controls" width="420"> |
+
+| Family modularity / Modularidad por familia | Interaction modularity / Modularidad por interaccion |
+| --- | --- |
+| <img src="outputs/invariant_graph_validation/05_modularity_by_family_vs_controls.png" alt="Family modularity versus randomized controls" width="420"> | <img src="outputs/invariant_graph_validation/06_modularity_by_interaction_vs_controls.png" alt="Interaction modularity versus randomized controls" width="420"> |
+
+| Spectral comparison / Comparacion espectral | Robust clusters / Clusters robustos |
+| --- | --- |
+| <img src="outputs/invariant_graph_validation/07_spectral_graph_comparison.png" alt="Spectral graph comparison against controls" width="420"> | <img src="outputs/invariant_graph_validation/08_robust_cluster_diagram.png" alt="Robust cluster diagram with persistence fractions" width="420"> |
+
+| Edge survival / Supervivencia de aristas | 3D helicoid overlay / Superposicion helicoidal 3D |
+| --- | --- |
+| <img src="outputs/invariant_graph_validation/09_edge_survival_curve.png" alt="Edge survival curve by persistence fraction" width="420"> | <img src="outputs/invariant_graph_validation/10_3d_helicoid_with_edges.png" alt="3D helicoid with persistent graph edges overlaid" width="420"> |

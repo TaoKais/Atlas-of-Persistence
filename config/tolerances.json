@@ -1,0 +1,10 @@
+{
+  "angular_close_deg": [5, 10, 15, 20, 30],
+  "euclidean_close_percentile": [5, 10, 15],
+  "neighbor_rank_k": [1, 2, 3, 5],
+  "persistence_fraction_threshold": [0.5, 0.7, 0.8, 0.9],
+  "metric_relative_tolerance": 0.05,
+  "numeric_absolute_tolerance": 1e-12,
+  "monte_carlo_runs": 1000,
+  "empirical_p_value_threshold": 0.05
+}
