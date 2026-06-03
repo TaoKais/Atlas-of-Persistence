@@ -1,0 +1,9 @@
+test,model,coefficient,r2,adjusted_r2,aic,bic,cross_validated_r2,answer,n,relative_numeric_tolerance,absolute_numeric_tolerance
+mass_vs_lifetime,log_lifetime ~ log_mass,-0.5556025072338352,0.30869414604452383,0.2830902255276543,105.11799687594953,107.85258853592248,0.2353489631070741,"Measured lifetime is not defined from mass, but this model tests only mass association.",29,1e-06,1e-12
+mass_vs_N,logN ~ log_mass,-0.46392459492519406,0.2152260297765053,0.18616032717563513,105.11799687594953,107.85258853592248,,Partly tautological because logN includes log_mass plus log_lifetime and a constant.,29,1e-06,1e-12
+mass_vs_Q,logQ ~ log_mass,-0.46392459492519406,0.2152260297765053,0.18616032717563513,105.11799687594953,107.85258853592248,,"Q is treated here as N by task definition, so it has the same tautological mass term.",29,1e-06,1e-12
+model_comparison,Model 1: log_lifetime ~ log_mass,,0.30869414604452383,0.2830902255276543,105.11799687594953,107.85258853592248,0.2353489631070741,,29,1e-06,1e-12
+model_comparison,Model 2: log_lifetime ~ interaction,,0.4027085952262611,0.3310336266534125,104.87885687382673,110.34804019377263,-0.15987679842655078,,29,1e-06,1e-12
+model_comparison,Model 3: log_lifetime ~ log_mass + interaction,,0.8159886276068427,0.7853200655413164,72.73403800159231,79.57051715152468,-1.0909135791195617,,29,1e-06,1e-12
+model_comparison,Model 4: log_lifetime ~ log_mass * interaction,,0.8440185374098457,0.7920247165464609,73.94148664678325,84.87985328667504,-0.4544491700048199,,29,1e-06,1e-12
+interaction_labels_explain_mass_residuals,residual(log_lifetime ~ log_mass) ~ interaction,,0.700442195682021,0.6644952591638635,74.16000843372417,79.62919175367007,,Interaction-label residual structure is non-tautological if above random-label controls.,29,1e-06,1e-12

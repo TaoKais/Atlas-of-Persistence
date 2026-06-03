@@ -1,0 +1,13 @@
+{
+  "pearson_rho_tolerance": 0.05,
+  "spearman_rho_tolerance": 0.05,
+  "p_value_threshold": 0.05,
+  "bootstrap_confidence": 0.95,
+  "weak_exponent_expected": -5.0,
+  "weak_exponent_tolerance": 2.0,
+  "min_group_n_for_regression": 3,
+  "permutation_runs": 10000,
+  "minimum_permutation_runs": 1000,
+  "relative_numeric_tolerance": 1e-6,
+  "absolute_numeric_tolerance": 1e-12
+}

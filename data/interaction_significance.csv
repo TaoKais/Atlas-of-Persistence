@@ -1,0 +1,2 @@
+model_comparison,observed_delta_R2,observed_delta_AIC,observed_delta_BIC,permutation_p_value,n_permutations,passes_p05,interpretation,p_value_threshold,n,relative_numeric_tolerance,absolute_numeric_tolerance
+Model 3 vs Model 1,0.5072944815623188,-32.38395887435722,-28.282071384397796,9.999000099990002e-05,10000,True,Interaction labels explain lifetime beyond mass at p<0.05.,0.05,29,1e-06,1e-12

@@ -1,0 +1,5 @@
+interaction,fitted_alpha,expected_alpha,tolerance,absolute_error,relative_error,compatible_with_expectation,caution_note,relative_numeric_tolerance,absolute_numeric_tolerance
+electromagnetic,,,,,,False,No fixed exponent was imposed for this interaction.,1e-06,1e-12
+mixed,-1.1389240738227286,,,,,False,No fixed exponent was imposed for this interaction.,1e-06,1e-12
+strong,-0.8734079752613297,,,,,False,No fixed exponent was imposed for this interaction.,1e-06,1e-12
+weak,-6.576475589461065,-5.0,2.0,1.5764755894610651,0.31529511789221304,True,Weak -5 scaling is approximate and muon-like; it is not universal.,1e-06,1e-12
