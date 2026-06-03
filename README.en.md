@@ -87,6 +87,10 @@ tests/      basic mathematical and physical checks
 output/     regenerable reports
 ```
 
+## License
+
+License: MIT. See [LICENSE](LICENSE).
+
 ## Data and Sources
 
 The particle values are an exploratory selection of central values published by

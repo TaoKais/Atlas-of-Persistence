@@ -30,6 +30,12 @@ See [the app README](archipelago-explorer/README.md) and
 - [English](README.en.md)
 - [Espanol](README.es.md)
 
+## License / Licencia
+
+License: MIT. See [LICENSE](LICENSE).
+
+Licencia: MIT. Consulte [LICENSE](LICENSE).
+
 ## Quick Start / Inicio Rapido
 
 Requires Python 3.10 or later. Install the analysis dependencies first.

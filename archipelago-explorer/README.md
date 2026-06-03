@@ -43,5 +43,9 @@ npm run build
 - Shuffled and randomized controls
 - CSV, JSON, Markdown, PNG, and SVG exports
 
+## License
+
+License: MIT. See [../LICENSE](../LICENSE).
+
 Read [the scientific scope](docs/scientific_scope.md) before interpreting
 visual structures.

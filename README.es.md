@@ -87,6 +87,10 @@ tests/      comprobaciones matematicas y fisicas basicas
 output/     informes regenerables
 ```
 
+## Licencia
+
+License: MIT. Consulte [LICENSE](LICENSE).
+
 ## Datos y fuentes
 
 Los valores de particulas son una seleccion exploratoria de valores centrales
